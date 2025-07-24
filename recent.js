@@ -2,12 +2,16 @@
 const axios = require('axios');
 const fs = require('fs');
 const path = require('path');
+// 1. 引入 mysql2/promise 模块
+const mysql = require('mysql2/promise');
+const config = require('./config');
 
-// API 配置
-const RAPIDAPI_KEY = 'fba5e829cdmsh4f79c0cc3919ecfp13159fjsn8cfd25be27df';
-const RAPIDAPI_HOST = 'yahoo-finance15.p.rapidapi.com';
-const API_URL = 'https://yahoo-finance15.p.rapidapi.com/api/v2/markets/stock/history'; 
 
+const { host, key } = config.rapidapi.yahooFinance;
+const BASE_URL = config.api.baseUrl;
+const ENDPOINT = config.api.endpoints.history;
+
+const API_URL = `${BASE_URL}${ENDPOINT}`
 /**
  * 获取股票历史数据
  * @param {string} symbol - 股票代码
@@ -26,8 +30,8 @@ async function getStockHistory(symbol, interval = '1d', limit = 640) {
                 limit: limit
             },
             headers: {
-                'X-RapidAPI-Key': RAPIDAPI_KEY,
-                'X-RapidAPI-Host': RAPIDAPI_HOST,
+                'X-RapidAPI-Key': key,
+                'X-RapidAPI-Host': host,
             },
             timeout: 30000 // 30秒超时
         });
@@ -272,11 +276,11 @@ function filterRecentDays(historyData, days = 7) {
  */
 function displayRecentData(recentItems, symbol, timestampField = 'timestamp') {
     if (recentItems.length === 0) {
-        console.log('📉 最近七天没有数据');
+        console.log('📉 最近三十天没有数据');
         return;
     }
 
-    console.log(`\n=== ${symbol} 最近七天历史数据 ===`);
+    console.log(`\n=== ${symbol} 最近三十天历史数据 ===`);
     console.log('日期时间 (UTC)       | 开盘价 | 最高价 | 最低价 | 收盘价 | 成交量');
     console.log('------------------------------------------------------------------------');
 
@@ -336,51 +340,120 @@ function saveToFile(data, filename) {
     }
 }
 
-// 主函数
+/**
+ * 将筛选后的数据保存到 MySQL 数据库
+ * @param {Array} recentItems - 筛选后的数据项数组
+ * @param {string} symbol - 股票代码
+ */
+async function saveToDatabase(recentItems, symbol) {
+    if (recentItems.length === 0) {
+        console.log('⚠️  没有数据需要保存到数据库');
+        return;
+    }
+
+    let connection; // 声明连接变量
+    try {
+        // 3. 创建数据库连接
+        connection = await mysql.createConnection(config.db);
+        console.log('✅ 数据库连接成功');
+
+        // 4. 准备 SQL 插入语句
+        // 使用 INSERT ... ON DUPLICATE KEY UPDATE 来处理可能的重复数据
+        // 假设 unique_symbol_time (symbol, data_timestamp_unix) 是唯一键
+        const sql = `
+            INSERT INTO stock_history 
+            (symbol, data_timestamp, data_timestamp_unix, open_price, high_price, low_price, close_price, volume) 
+            VALUES ?
+            ON DUPLICATE KEY UPDATE
+                data_timestamp=VALUES(data_timestamp),
+                open_price=VALUES(open_price),
+                high_price=VALUES(high_price),
+                low_price=VALUES(low_price),
+                close_price=VALUES(close_price),
+                volume=VALUES(volume)
+        `;
+
+        const values = recentItems.map(item => [
+            symbol,
+            item.timestamp,
+            item.timestamp_unix,
+            item.open,
+            item.high,
+            item.low,
+            item.close,
+            item.volume
+        ]);
+
+        const [result] = await connection.query(sql, [values]); // 注意这里包裹成二维数组
+        // 注意：对于 INSERT ... ON DUPLICATE KEY UPDATE,
+        // affectedRows 包含插入和更新的总行数
+        // changedRows 只包含实际被修改的行数
+        // insertedRows 没有直接提供，但可以通过 affectedRows 和 changedRows 计算
+        console.log(`✅ 数据库保存完成。受影响的行数: ${result.affectedRows}`);
+
+        // 7. 关闭数据库连接
+        await connection.end();
+        console.log('🔒 数据库连接已关闭');
+
+    } catch (error) {
+        console.error('❌ 保存数据到数据库时出错:', error.message);
+        // 尝试关闭连接（如果已建立）
+        if (connection) {
+            try {
+                await connection.end();
+                console.log('🔒 (尝试) 数据库连接已关闭');
+            } catch (closeError) {
+                console.error('❌ 关闭数据库连接时也出错:', closeError.message);
+            }
+        }
+        // 重新抛出错误，让主函数捕获
+        throw error;
+    }
+}
+
+// --- 主函数 ---
 async function main() {
-    console.log('=== Yahoo Finance 股票历史数据获取器 (最终修正版 - 处理数组格式) ===\n');
+    console.log('=== Yahoo Finance 股票历史数据获取器 (最终修正版 - 处理数组格式 + 保存到MySQL) ===\n');
 
     const symbol = 'AAPL';
-    const interval = '1d'; // 根据你的需求和API能力调整
-    const limit = 31;     
+    const interval = '1d'; // 注意：你现在的数据是日线 '1d'
+    const limit = 60;     
 
     try {
         // 1. 获取历史数据
+        const limitNum = 40
         const historyData = await getStockHistory(symbol, interval, limit);
 
-        // 2. 保存完整响应数据
-        saveToFile(historyData, `full-history-${symbol}.json`);
+        // 2. 保存完整响应数据 (可选，如果需要)
+        // saveToFile(historyData, `full-history-${symbol}.json`);
 
-        // 3. 筛选最近一月的数据
-        // 直接取历史数据的最后30条记录
-        const recentItems = historyData.body.slice(-30);
+        // 3. 筛选最近七天的数据
+        const recentItems = filterRecentDays(historyData,limitNum);
 
-        // 4. 确定用于显示的时间戳字段
-        let displayTimestampField = 'timestamp';
-        if (recentItems.length > 0 && typeof recentItems[0] === 'object' && recentItems[0] !== null) {
-            const tsFieldsToCheck = ['timestamp', 'timestamp_unix', 'date_utc'];
-            for (const field of tsFieldsToCheck) {
-                if (recentItems[0].hasOwnProperty(field)) {
-                    displayTimestampField = field;
-                    break;
-                }
-            }
-        }
+        // 4. 确定用于显示的时间戳字段 (这部分逻辑可能需要根据你实际的返回数据微调)
+        let displayTimestampField = 'timestamp_unix'; // 通常使用 Unix 时间戳进行内部处理
+        // 如果 recentItems[0] 有 timestamp 字段且是字符串 'YYYY-MM-DD'，也可以用它
+        // if (recentItems.length > 0 && recentItems[0].timestamp && typeof recentItems[0].timestamp === 'string' && /^\d{4}-\d{2}-\d{2}$/.test(recentItems[0].timestamp)) {
+        //     displayTimestampField = 'timestamp';
+        // }
 
         // 5. 显示筛选后的数据
         displayRecentData(recentItems, symbol, displayTimestampField);
 
-        // 6. 保存筛选后的数据
+        // 6. 保存筛选后的数据到 JSON 文件 (可选)
         const recentDataToSave = {
             meta: historyData.meta || {},
             recentItems: recentItems,
             filterInfo: {
-                days: 7,
+                days: limitNum,
                 itemCount: recentItems.length,
                 timestampField: displayTimestampField
             }
         };
-        saveToFile(recentDataToSave, `recent-7days-${symbol}.json`);
+        saveToFile(recentDataToSave, `recent-${limitNum}days-${symbol}.json`);
+
+        // 7. --- 新增：保存到 MySQL 数据库 ---
+        await saveToDatabase(recentItems, symbol);
 
     } catch (error) {
         console.error('\n💥 主函数执行出错:', error.message);
@@ -404,5 +477,6 @@ module.exports = {
     getStockHistory,
     filterRecentDays,
     displayRecentData,
-    saveToFile
+    saveToFile,
+    saveToDatabase // 导出新函数
 };

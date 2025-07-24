@@ -11,7 +11,8 @@ module.exports = {
     endpoints: {
       tickers: '/api/v2/markets/tickers',
       search: '/api/v1/markets/search',
-      quote: '/api/v1/markets/quote'
+      quote: '/api/v1/markets/quote',
+      history: '/api/v2/markets/stock/history',
     }
   },
   settings: {
@@ -23,5 +24,14 @@ module.exports = {
     ETF: 'ETF',
     MUTUALFUND: 'MUTUALFUND',
     CRYPTOCURRENCY: 'CRYPTOCURRENCY'
+  },
+  db: {
+  host: 'localhost',     // 你的 MySQL 服务器地址
+  user: 'root', // 你的 MySQL 用户名
+  password: '202507', // 你的 MySQL 密码
+  database: 'finance_data', // 你的数据库名
+  waitForConnections: true,
+  connectionLimit: 10,
+  queueLimit: 0
   }
 };
