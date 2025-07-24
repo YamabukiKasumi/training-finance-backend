@@ -92,6 +92,7 @@ function getSinaStockData(symbol) {
     });
 }
 
+
 // 2. 从腾讯股票获取数据
 function getTencentStockData(symbol) {
     return new Promise((resolve, reject) => {
