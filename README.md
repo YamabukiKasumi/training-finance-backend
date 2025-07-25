@@ -7,3 +7,26 @@
 **recent.js** Fetch the history of a specified stock and save to database.
 
 **information_to_db.js** Fetch the information of holding stocks and save them to database.
+
+**calculate_portfolio_value.js** Calculate the total value in real time.
+the return value is a json object, which is shown as follows:
+{
+  "calculationTime": "2025-07-25T03:45:20.418Z",
+  "totalMarketValue": 61071.83,
+  "holdings": [
+    {
+      "symbol": "AAPL",
+      "quantity": 85,
+      "currentPrice": 213.76,
+      "marketValue": 18169.6
+    },
+    {
+      "symbol": "MSFT",
+      "quantity": 47,
+      "currentPrice": 510.88,
+      "marketValue": 24011.36
+    },
+    
+    ...
+  ]
+}
