@@ -6,7 +6,9 @@
 
 **recent.js** Fetch the history of a specified stock and save to database.
 
-**information_to_db.js** Fetch the information of holding stocks and save them to database.
+~~**information_to_db.js(deprecated)** Fetch the information of holding stocks and save them to database.~~
+
+**information_to_db_new.js** Fetch the information of holding stocks and save them to database.
 
 **calculate_portfolio_value.js** Calculate the total value in real time.
 
