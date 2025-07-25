@@ -415,7 +415,7 @@ async function saveToDatabase(recentItems, symbol) {
 async function main() {
     console.log('=== Yahoo Finance 股票历史数据获取器 (最终修正版 - 处理数组格式 + 保存到MySQL) ===\n');
 
-    const symbol = 'AAPL';
+    const symbol = 'JPM';
     const interval = '1d'; // 注意：你现在的数据是日线 '1d'
     const limit = 60;     
 

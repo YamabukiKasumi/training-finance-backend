@@ -12,6 +12,7 @@ module.exports = {
       tickers: '/api/v2/markets/tickers',
       search: '/api/v1/markets/search',
       quote: '/api/v1/markets/quote',
+      quotes: '/api/v1/markets/stock/quotes',
       history: '/api/v2/markets/stock/history',
     }
   },

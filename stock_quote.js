@@ -1,9 +1,12 @@
 // correct-multi-stock-final.js
 const axios = require('axios');
 
-const RAPIDAPI_KEY = 'fba5e829cdmsh4f79c0cc3919ecfp13159fjsn8cfd25be27df';
-const RAPIDAPI_HOST = 'yahoo-finance15.p.rapidapi.com';
-const API_URL = 'https://yahoo-finance15.p.rapidapi.com/api/v1/markets/stock/quotes'; 
+const config = require('./config');
+
+const { host, key } = config.rapidapi.yahooFinance;
+const BASE_URL = config.api.baseUrl;
+const ENDPOINT = config.api.endpoints.quotes;
+const API_URL = `${BASE_URL}${ENDPOINT}`;
 
 async function getMultipleStocks(tickers) {
     try {
@@ -14,8 +17,8 @@ async function getMultipleStocks(tickers) {
                 ticker: tickers.join(',')  // 使用普通逗号，不是%2C
             },
             headers: {
-                'X-RapidAPI-Key': RAPIDAPI_KEY,
-                'X-RapidAPI-Host': RAPIDAPI_HOST,
+                'X-RapidAPI-Key': key,
+                'X-RapidAPI-Host': host,
             },
             timeout: 15000
         });
