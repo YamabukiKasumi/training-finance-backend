@@ -163,7 +163,7 @@ async function storeStockDataToDB(stockDataWithHoldings) {
  */
 function generateRandomQuantity() {
     // 生成一个合理的随机持仓数量，例如 1 到 100 股
-    return Math.floor(Math.random() * 100) + 1;
+    return Math.floor(Math.random() * 90) + 10;
 }
 
 // --- 主逻辑 ---
