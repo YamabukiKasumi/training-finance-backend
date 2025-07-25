@@ -26,7 +26,7 @@ async function fetchAllHoldings() {
         connection = await mysql.createConnection(dbConfig);
         console.log('🔗 已连接到数据库');
 
-        const [rows] = await connection.execute('SELECT symbol, quantity FROM user_stock_holdings');
+        const [rows] = await connection.execute('SELECT symbol, quantity FROM user_stock_holdings_new');
         console.log(`📚 从数据库获取到 ${rows.length} 条持仓记录`);
         return rows;
 

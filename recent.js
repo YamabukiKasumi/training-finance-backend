@@ -415,13 +415,13 @@ async function saveToDatabase(recentItems, symbol) {
 async function main() {
     console.log('=== Yahoo Finance 股票历史数据获取器 (最终修正版 - 处理数组格式 + 保存到MySQL) ===\n');
 
-    const symbol = 'JPM';
+    const symbol = 'MSFT';
     const interval = '1d'; // 注意：你现在的数据是日线 '1d'
-    const limit = 60;     
+    const limit = 70;     
 
     try {
         // 1. 获取历史数据
-        const limitNum = 40
+        const limitNum = 50
         const historyData = await getStockHistory(symbol, interval, limit);
 
         // 2. 保存完整响应数据 (可选，如果需要)

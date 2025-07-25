@@ -1,0 +1,260 @@
+{
+  "meta": {
+    "version": "v2.0",
+    "status": 200,
+    "copywrite": "https://apicalls.io",
+    "ticker": "NVDA",
+    "interval": "1d",
+    "dividend": false
+  },
+  "recentItems": [
+    {
+      "timestamp": "2025-06-16",
+      "timestamp_unix": 1750046400,
+      "open": 143.345,
+      "high": 146.175,
+      "low": 143.2001,
+      "close": 144.69,
+      "volume": 183133200
+    },
+    {
+      "timestamp": "2025-06-17",
+      "timestamp_unix": 1750132800,
+      "open": 144.49,
+      "high": 145.22,
+      "low": 143.78,
+      "close": 144.12,
+      "volume": 139108000
+    },
+    {
+      "timestamp": "2025-06-18",
+      "timestamp_unix": 1750219200,
+      "open": 144.005,
+      "high": 145.65,
+      "low": 143.12,
+      "close": 145.48,
+      "volume": 161494100
+    },
+    {
+      "timestamp": "2025-06-20",
+      "timestamp_unix": 1750392000,
+      "open": 145.45,
+      "high": 146.2,
+      "low": 142.65,
+      "close": 143.85,
+      "volume": 242956100
+    },
+    {
+      "timestamp": "2025-06-23",
+      "timestamp_unix": 1750651200,
+      "open": 142.5,
+      "high": 144.78,
+      "low": 142.03,
+      "close": 144.17,
+      "volume": 154299000
+    },
+    {
+      "timestamp": "2025-06-24",
+      "timestamp_unix": 1750737600,
+      "open": 145.56,
+      "high": 147.96,
+      "low": 145.5,
+      "close": 147.9,
+      "volume": 187566100
+    },
+    {
+      "timestamp": "2025-06-25",
+      "timestamp_unix": 1750824000,
+      "open": 149.27,
+      "high": 154.45,
+      "low": 149.26,
+      "close": 154.31,
+      "volume": 269146400
+    },
+    {
+      "timestamp": "2025-06-26",
+      "timestamp_unix": 1750910400,
+      "open": 155.98,
+      "high": 156.715,
+      "low": 154,
+      "close": 155.02,
+      "volume": 198145700
+    },
+    {
+      "timestamp": "2025-06-27",
+      "timestamp_unix": 1750996800,
+      "open": 156.04,
+      "high": 158.71,
+      "low": 155.255,
+      "close": 157.75,
+      "volume": 263234500
+    },
+    {
+      "timestamp": "2025-06-30",
+      "timestamp_unix": 1751256000,
+      "open": 158.4,
+      "high": 158.66,
+      "low": 155.96,
+      "close": 157.99,
+      "volume": 194580300
+    },
+    {
+      "timestamp": "2025-07-01",
+      "timestamp_unix": 1751342400,
+      "open": 156.29,
+      "high": 157.2,
+      "low": 151.49,
+      "close": 153.3,
+      "volume": 213143600
+    },
+    {
+      "timestamp": "2025-07-02",
+      "timestamp_unix": 1751428800,
+      "open": 152.98,
+      "high": 157.6,
+      "low": 152.97,
+      "close": 157.25,
+      "volume": 171224100
+    },
+    {
+      "timestamp": "2025-07-03",
+      "timestamp_unix": 1751515200,
+      "open": 158.37,
+      "high": 160.98,
+      "low": 157.77,
+      "close": 159.34,
+      "volume": 143716000
+    },
+    {
+      "timestamp": "2025-07-07",
+      "timestamp_unix": 1751860800,
+      "open": 158.2,
+      "high": 159.31,
+      "low": 157.342,
+      "close": 158.24,
+      "volume": 140138900
+    },
+    {
+      "timestamp": "2025-07-08",
+      "timestamp_unix": 1751947200,
+      "open": 159.33,
+      "high": 160.22,
+      "low": 158.39,
+      "close": 160,
+      "volume": 138133000
+    },
+    {
+      "timestamp": "2025-07-09",
+      "timestamp_unix": 1752033600,
+      "open": 161.22,
+      "high": 164.42,
+      "low": 161.16,
+      "close": 162.88,
+      "volume": 183656400
+    },
+    {
+      "timestamp": "2025-07-10",
+      "timestamp_unix": 1752120000,
+      "open": 164.32,
+      "high": 164.5,
+      "low": 161.61,
+      "close": 164.1,
+      "volume": 167704000
+    },
+    {
+      "timestamp": "2025-07-11",
+      "timestamp_unix": 1752206400,
+      "open": 163.715,
+      "high": 167.89,
+      "low": 163.47,
+      "close": 164.92,
+      "volume": 193633200
+    },
+    {
+      "timestamp": "2025-07-14",
+      "timestamp_unix": 1752465600,
+      "open": 165.37,
+      "high": 165.49,
+      "low": 162.02,
+      "close": 164.07,
+      "volume": 136975700
+    },
+    {
+      "timestamp": "2025-07-15",
+      "timestamp_unix": 1752552000,
+      "open": 171.19,
+      "high": 172.4,
+      "low": 169.195,
+      "close": 170.7,
+      "volume": 230627300
+    },
+    {
+      "timestamp": "2025-07-16",
+      "timestamp_unix": 1752638400,
+      "open": 171.06,
+      "high": 171.75,
+      "low": 168.9,
+      "close": 171.37,
+      "volume": 158831500
+    },
+    {
+      "timestamp": "2025-07-17",
+      "timestamp_unix": 1752724800,
+      "open": 172.02,
+      "high": 174.16,
+      "low": 170.83,
+      "close": 173,
+      "volume": 160841100
+    },
+    {
+      "timestamp": "2025-07-18",
+      "timestamp_unix": 1752811200,
+      "open": 173.64,
+      "high": 174.25,
+      "low": 171.26,
+      "close": 172.41,
+      "volume": 146456400
+    },
+    {
+      "timestamp": "2025-07-21",
+      "timestamp_unix": 1753070400,
+      "open": 172.75,
+      "high": 173.38,
+      "low": 171,
+      "close": 171.38,
+      "volume": 123126100
+    },
+    {
+      "timestamp": "2025-07-22",
+      "timestamp_unix": 1753156800,
+      "open": 171.34,
+      "high": 171.39,
+      "low": 164.58,
+      "close": 167.03,
+      "volume": 193114300
+    },
+    {
+      "timestamp": "2025-07-23",
+      "timestamp_unix": 1753243200,
+      "open": 169.53,
+      "high": 171.26,
+      "low": 167.97,
+      "close": 170.78,
+      "volume": 154082200
+    },
+    {
+      "timestamp": "2025-07-24",
+      "timestamp_unix": 1753329600,
+      "open": 172.44,
+      "high": 173.83,
+      "low": 171.3,
+      "close": 173.74,
+      "volume": 128984600
+    }
+  ],
+  "filterInfo": {
+    "days": 40,
+    "itemCount": 27,
+    "timestampField": "timestamp_unix"
+  }
+}
