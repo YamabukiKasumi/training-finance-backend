@@ -26,7 +26,6 @@ the return value is a json object, which is shown as follows:
       "currentPrice": 510.88,
       "marketValue": 24011.36
     },
-    
     ...
   ]
 }
