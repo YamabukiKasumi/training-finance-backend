@@ -12,6 +12,8 @@
 
 **calculate_portfolio_value.js** Calculate the total value in real time.
 
+**save_latest_news.js** Fetch the latest news about stock/ETF and save to DB.
+
 The return value is a json object, which is shown as follows:
 ```
 {
