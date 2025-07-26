@@ -14,6 +14,7 @@ module.exports = {
       quote: '/api/v1/markets/quote',
       quotes: '/api/v1/markets/stock/quotes',
       history: '/api/v2/markets/stock/history',
+      news: '/api/v2/markets/news'
     }
   },
   settings: {
