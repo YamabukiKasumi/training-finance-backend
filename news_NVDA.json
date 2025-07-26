@@ -1,19 +1,10 @@
 {
-  "url": "https://www.youtube-nocookie.com/embed/qO6QE-0WBP8",
-  "img": "https://cdn.snapi.dev/images/v1/m/u/j/soick2d-2484088-3199361.jpg",
-  "title": "Ives: MSFT Entering \"Golden Era,\" TSLA to $500 & Mag 7 Earnings to Show Promise",
-  "text": "Tech mega bull, Dan Ives, returns to the Watch List and breaks down the latest developments on all things Big Tech. Ives calls his $600 price target on Microsoft (MSFT) \"conservative,\" believing the c...",
-  "source": "Schwab Network",
-  "type": "Video",
-  "tickers": [
-    "$MSFT",
-    "$TSLA",
-    "$AAPL",
-    "$AMZN",
-    "$GOOG",
-    "$GOOGL",
-    "$META"
-  ],
-  "time": "Jul 25, 2025, 3:00 PM EDT",
-  "ago": "15 hours ago"
+  "url": "https://www.reuters.com/world/china/huawei-shows-off-ai-computing-system-rival-nvidias-top-product-2025-07-26/",
+  "img": "https://cdn.snapi.dev/images/v1/a/v/7/nvda20-2686533-3199843.jpg",
+  "title": "Huawei shows off AI computing system to rival Nvidia's top product",
+  "text": "China's Huawei Technologies showed off an AI computing system on Saturday that one industry expert has said rivals Nvidia's most advanced offering, as the Chinese technology giant seeks to capture mar...",
+  "source": "Reuters",
+  "type": "Article",
+  "time": "Jul 26, 2025, 6:11 AM EDT",
+  "ago": "58 minutes ago"
 }

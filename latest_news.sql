@@ -1,7 +1,7 @@
 USE finance_data;
 CREATE TABLE IF NOT EXISTS latest_news (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    symbol VARCHAR(20) NOT NULL,            -- 股票 symbol，如 'AAPL'
+    symbol VARCHAR(30) NOT NULL,            -- 股票 symbol，如 'AAPL'
     title VARCHAR(255) NOT NULL,
     url TEXT NOT NULL,
     img TEXT,

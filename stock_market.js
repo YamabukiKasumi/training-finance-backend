@@ -102,7 +102,7 @@ async function saveToStockMarket(cleanData) {
     console.log('✅ 成功连接数据库，准备写入 stock_market 表');
 
     const query = `
-      INSERT INTO stock_market 
+      INSERT INTO stock_market_new 
         (symbol, stockType, lastSalePrice, netChange, percentageChange, deltaIndicator, volume)
       VALUES ( ?, ?, ?, ?, ?, ?, ?)
       ON DUPLICATE KEY UPDATE
@@ -142,16 +142,16 @@ async function saveToStockMarket(cleanData) {
 async function main(){
     const STOCKS = config.stockTypes.STOCKS;
     const ETF = config.stockTypes.ETF;
-    const MUTUALFUND = config.stockTypes.MUTUALFUND;
-    // const symbolsWithType = [
-    //     // 示例股票和类型
-    //     { ticker: 'AAPL', type: STOCKS },
-    //     { ticker: 'SPY', type: ETF },
-    //     { ticker: 'VFIAX', type: MUTUALFUND },
-    // ];
+    const MUTUALFUNDS = config.stockTypes.MUTUALFUNDS;
     const symbolsWithType = [
         // 示例股票和类型
-        { ticker: 'AAPL', type: STOCKS }];
+        { ticker: 'AAPL', type: STOCKS },
+        { ticker: 'SPY', type: ETF },
+        { ticker: 'VFIAX', type: MUTUALFUNDS },
+    ];
+    // const symbolsWithType = [
+    //     // 示例股票和类型
+    //     { ticker: 'AAPL', type: STOCKS }];
 
     for (const { ticker, type } of symbolsWithType) {
       try {
