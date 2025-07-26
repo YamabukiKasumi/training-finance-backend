@@ -25,6 +25,7 @@ module.exports = {
     STOCKS: 'STOCKS',
     ETF: 'ETF',
     MUTUALFUND: 'MUTUALFUND',
+    MUTUALFUNDS: 'MUTUALFUNDS',
     CRYPTOCURRENCY: 'CRYPTOCURRENCY'
   },
   db: {
