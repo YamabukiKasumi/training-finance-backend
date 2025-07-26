@@ -14,6 +14,8 @@
 
 **save_latest_news.js** Fetch the latest news about stock/ETF and save to DB.
 
+**stock_market.js** Fetch the realtime quote date and save to DB for the optional function.
+
 The return value is a json object, which is shown as follows:
 ```
 {
