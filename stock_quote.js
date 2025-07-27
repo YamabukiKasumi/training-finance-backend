@@ -68,7 +68,7 @@ async function main() {
     console.log('=== 正确的多股票数据获取器 ===\n');
     
     // 获取多个股票数据
-    const tickers = ['AAPL', 'MSFT', 'GOOGL', 'TSLA', 'AMZN', 'NVDA'];
+    const tickers = ['AAPL', 'MSFT', 'GOOGL', 'TSLA', 'AMZN', 'NVDA', 'SPY', 'EEM', 'VFIAX'];
     const result = await getMultipleStocks(tickers);
     
     if (result && result.body) {

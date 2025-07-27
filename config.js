@@ -14,6 +14,7 @@ module.exports = {
       quote: '/api/v1/markets/quote',
       quotes: '/api/v1/markets/stock/quotes',
       history: '/api/v2/markets/stock/history',
+      news: '/api/v2/markets/news'
     }
   },
   settings: {
@@ -24,12 +25,13 @@ module.exports = {
     STOCKS: 'STOCKS',
     ETF: 'ETF',
     MUTUALFUND: 'MUTUALFUND',
+    MUTUALFUNDS: 'MUTUALFUNDS',
     CRYPTOCURRENCY: 'CRYPTOCURRENCY'
   },
   db: {
   host: 'localhost',     // 你的 MySQL 服务器地址
   user: 'root', // 你的 MySQL 用户名
-  password: '202507', // 你的 MySQL 密码
+  password: '123456', // 你的 MySQL 密码
   database: 'finance_data', // 你的数据库名
   waitForConnections: true,
   connectionLimit: 10,

@@ -12,6 +12,7 @@ CREATE TABLE IF NOT EXISTS stock_history (
     low_price DECIMAL(10, 4) NOT NULL,
     close_price DECIMAL(10, 4) NOT NULL,
     volume BIGINT NOT NULL,
+    
     -- 可选：添加唯一约束，防止重复插入同一时间点的数据
     UNIQUE KEY unique_symbol_time (symbol, data_timestamp_unix),
     -- 可选：添加索引以提高查询速度

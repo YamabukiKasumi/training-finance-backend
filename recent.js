@@ -362,7 +362,7 @@ async function saveToDatabase(recentItems, symbol) {
         // 假设 unique_symbol_time (symbol, data_timestamp_unix) 是唯一键
         const sql = `
             INSERT INTO stock_history 
-            (symbol, data_timestamp, data_timestamp_unix, open_price, high_price, low_price, close_price, volume) 
+            (symbol, data_timestamp, data_timestamp_unix, open_price, high_price, low_price, close_price, volume, security_type) 
             VALUES ?
             ON DUPLICATE KEY UPDATE
                 data_timestamp=VALUES(data_timestamp),
@@ -370,7 +370,8 @@ async function saveToDatabase(recentItems, symbol) {
                 high_price=VALUES(high_price),
                 low_price=VALUES(low_price),
                 close_price=VALUES(close_price),
-                volume=VALUES(volume)
+                volume=VALUES(volume),
+                security_type=VALUES(security_type)
         `;
 
         const values = recentItems.map(item => [
@@ -415,7 +416,11 @@ async function saveToDatabase(recentItems, symbol) {
 async function main() {
     console.log('=== Yahoo Finance 股票历史数据获取器 (最终修正版 - 处理数组格式 + 保存到MySQL) ===\n');
 
+
+//     const symbol = 'SPY';   // ETF类型
+
     const symbol = 'MSFT';
+
     const interval = '1d'; // 注意：你现在的数据是日线 '1d'
     const limit = 70;     
 
