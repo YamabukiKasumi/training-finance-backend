@@ -19,22 +19,35 @@
 The return value is a json object, which is shown as follows:
 ```
 {
-  "calculationTime": "2025-07-25T03:45:20.418Z",
-  "totalMarketValue": 61071.83,
+  "calculationTime": "2025-07-25T08:04:44.299Z",
+  "totalCostBasis": 89361.74,
+  "totalMarketValue": 91562.49,
+  "totalProfit": 2200.75,
+  "totalReturnPercent": 2.46,
   "holdings": [
     {
       "symbol": "AAPL",
-      "quantity": 85,
+      "quantity": 87,
+      "purchaseTimestampUnix": 1752192000,
+      "costBasisPerShare": 212.41,
+      "costBasisTotal": 18479.67,
       "currentPrice": 213.76,
-      "marketValue": 18169.6
+      "marketValue": 18597.12,
+      "profit": 117.45,
+      "returnPercent": 0.64
     },
     {
       "symbol": "MSFT",
-      "quantity": 47,
+      "quantity": 16,
+      "purchaseTimestampUnix": 1753315200,
+      "costBasisPerShare": 505.87,
+      "costBasisTotal": 8093.92,
       "currentPrice": 510.88,
-      "marketValue": 24011.36
+      "marketValue": 8174.08,
+      "profit": 80.16,
+      "returnPercent": 0.99
     },
-    ...
+    ......
   ]
 }
 ```
