@@ -1,10 +1,11 @@
 const db = require('../db/mysql');
+const { successResponse, errorResponse } = require('../utils/response');
 
-const {
-  fetchNews,
-  getLatestPressRelease,
-  saveToDatabase
-} = require('../save_latest_news');
+// const {
+//   fetchNews,
+//   getLatestPressRelease,
+//   saveToDatabase
+// } = require('../save_latest_news');
 
 exports.getNewsForSymbols = async (symbols) => {
   console.log(`正在获取 ${symbols} 的最新新闻...`);
@@ -18,17 +19,17 @@ exports.getNewsForSymbols = async (symbols) => {
 
   // return rows;
 
-  // 1️⃣ 异步刷新每个 symbol 的新闻
-  symbols.forEach(async (symbol) => {
-    try {
-      const newsList = await fetchNews(symbol);
-      const latestNews = await getLatestPressRelease(newsList);
-      await saveToDatabase(symbol, latestNews);
-      console.log(`✅ 异步更新新闻成功: ${symbol}`);
-    } catch (err) {
-      console.error(`❌ 异步更新新闻失败: ${symbol}`, err.message);
-    }
-  });
+  // // 1️⃣ 异步刷新每个 symbol 的新闻
+  // symbols.forEach(async (symbol) => {
+  //   try {
+  //     const newsList = await fetchNews(symbol);
+  //     const latestNews = await getLatestPressRelease(newsList);
+  //     await saveToDatabase(symbol, latestNews);
+  //     console.log(`✅ 异步更新新闻成功: ${symbol}`);
+  //   } catch (err) {
+  //     console.error(`❌ 异步更新新闻失败: ${symbol}`, err.message);
+  //   }
+  // });
 
   // 2️⃣ 立即返回已有新闻数据
   if (rows.length === 0) {
