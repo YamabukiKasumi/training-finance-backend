@@ -79,3 +79,5 @@ async function main() {
 }
 
 main();
+
+exports.getMultipleStocks = getMultipleStocks;
