@@ -192,3 +192,11 @@ async function main(){
 }
 
 main();
+
+module.exports = {
+  fetchQuote,
+  writeToJSON,
+  cleanData,
+  fillMissingStockType,
+  saveToStockMarket
+};
