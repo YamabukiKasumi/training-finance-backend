@@ -3,7 +3,7 @@ module.exports = {
   rapidapi: {
     yahooFinance: {
       host: 'yahoo-finance15.p.rapidapi.com',
-      key: 'fba5e829cdmsh4f79c0cc3919ecfp13159fjsn8cfd25be27df'
+      key: '6c1145dd7bmsh7bd7f45ee4bc0fbp11d873jsn05fb8b00a89a'
     }
   },
   api: {
@@ -36,5 +36,16 @@ module.exports = {
   waitForConnections: true,
   connectionLimit: 10,
   queueLimit: 0
+  },
+  // *** 新增 FMP API 配置 ***
+  financialModelingPrep: {
+    baseUrl: 'https://financialmodelingprep.com/stable/', // 实际的基准URL，以便将来扩展
+    quoteEndpoint: '/quote', // 指数报价的相对路径
+    apiKey: 'mh1PytCioaQIwCWp2rQhQU2RmUR5Fw4I', // 替换为你的 FMP API Key
+  },
+  // *** 新增获取指数信息的默认符号和间隔 ***
+  indexConfig: {
+    defaultSymbols: ['^GSPC', '^DJI', '^IXIC', '^RUT', '^FTSE', '^N225', '^HSI'],
+    requestIntervalMs: 500, // 每个请求之间的间隔，单位毫秒 (根据FMP的速率限制调整，例如500ms)
   }
 };
