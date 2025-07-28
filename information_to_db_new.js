@@ -336,6 +336,5 @@ module.exports = {
     fetchUserHoldingsFromDB,
     storeStockDataToDB,
     generateRandomQuantity,
-    generateRandomPurchaseDate, // 导出新函数
-    main
+    generateRandomPurchaseDate
 };
