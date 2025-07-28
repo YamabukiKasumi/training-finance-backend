@@ -12,7 +12,14 @@ const PORT = 3001;
 
 const app = express();
 
-// app.use(cors());
+const corsOptions = {
+  origin: 'http://127.0.0.1:5500' // 只允许来自这个源的请求
+  // 如果你有多个前端源，可以写成数组：
+  // origin: ['http://127.0.0.1:5500', 'http://localhost:5500', 'https://your-production-frontend.com']
+};
+
+app.use(cors(corsOptions)); // 使用配置
+
 app.use(express.json()); // 解析 JSON 格式的请求体  
 
 app.use('/api/stocks', newsRoutes);     // 把 newsRoutes 中定义的所有路由 挂载到 /api/stocks 路径下
