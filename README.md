@@ -16,6 +16,8 @@
 
 **stock_market.js** Fetch the realtime quote date and save to DB for the optional function.
 
+**utils/response.js** Define the format of the response.
+
 **services/holdingsService.js** Fetch the current price and the history price of the user holdings, then calculate the Profit and the returnPercent.
 The return value is a json object, which is shown as follows:
 ```
