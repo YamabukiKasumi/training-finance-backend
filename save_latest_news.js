@@ -152,4 +152,10 @@ async function main() {
 
 main();
 
+module.exports = {
+  fetchNews,
+  getLatestPressRelease,
+  saveToDatabase
+};
+
 
