@@ -296,7 +296,8 @@ async function main() {
     console.log('=== 股票数据获取与存储脚本 (含买入时间) ===');
 
     // 1. 定义要获取的股票列表
-    const tickers = ['AAPL', 'MSFT', 'GOOGL', 'TSLA', 'AMZN', 'SPY', 'AAASLXX', 'VTV', 'NFLX', 'VTI'];
+    // const tickers = ['AAPL', 'MSFT', 'GOOGL', 'TSLA', 'AMZN', 'SPY', 'NVDA', 'VTV', 'NFLX', 'VTI'];
+    const tickers = ['NVDA'];
     console.log(`📋 目标股票列表: ${tickers.join(', ')}`);
 
     // 2. 从 API 获取股票数据
