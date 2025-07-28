@@ -3,7 +3,7 @@ module.exports = {
   rapidapi: {
     yahooFinance: {
       host: 'yahoo-finance15.p.rapidapi.com',
-      key: '6c1145dd7bmsh7bd7f45ee4bc0fbp11d873jsn05fb8b00a89a'
+      key: '6c1145dd7bmsh7bd7f45ee4bc0fbp11d873jsn05fb8b00a89a' // 新的key
     }
   },
   api: {
@@ -31,7 +31,8 @@ module.exports = {
   db: {
   host: 'localhost',     // 你的 MySQL 服务器地址
   user: 'root', // 你的 MySQL 用户名
-  password: '381237', // 你的 MySQL 密码
+
+  password: '202507', // 你的 MySQL 密码
   database: 'finance_data', // 你的数据库名
   waitForConnections: true,
   connectionLimit: 10,
