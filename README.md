@@ -60,3 +60,53 @@ The return value is a json object, which is shown as follows:
     }
 }
 ```
+```
+{
+    "code": 200,
+    "message": "成功",
+    "data": [
+        {
+            "symbol": "^GSPC",
+            "name": "S&P 500",
+            "price": 6388.64,
+            "changePercentage": 0.3974
+        },
+        {
+            "symbol": "^DJI",
+            "name": "Dow Jones Industrial Average",
+            "price": 44901.92,
+            "changePercentage": 0.4654
+        },
+        {
+            "symbol": "^IXIC",
+            "name": "NASDAQ Composite",
+            "price": 21108.32,
+            "changePercentage": 0.2391
+        },
+        {
+            "symbol": "^RUT",
+            "name": "Russell 2000",
+            "price": 2261.07,
+            "changePercentage": 0.3967
+        },
+        {
+            "symbol": "^FTSE",
+            "name": "FTSE 100",
+            "price": 9120.31,
+            "changePercentage": -0.1976
+        },
+        {
+            "symbol": "^N225",
+            "name": "Nikkei 225",
+            "price": 41076.25,
+            "changePercentage": -0.9166
+        },
+        {
+            "symbol": "^HSI",
+            "name": "Hang Seng Index",
+            "price": 25530.93,
+            "changePercentage": 0.5616
+        }
+    ]
+}
+```
