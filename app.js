@@ -4,6 +4,7 @@ const cors = require('cors');
 
 const newsRoutes = require('./routes/news');
 const holdingsRoutes = require('./routes/myholdings'); // 新增的路由
+const indexRoutes = require('./routes/indexRoutes'); // *** 新增的路由 ***
 // const quoteRoutes = require('./routes/quote');
 // const historyRoutes = require('./routes/history');
 const PORT = 3001;
@@ -16,6 +17,7 @@ app.use(express.json()); // 解析 JSON 格式的请求体
 
 app.use('/api/stocks', newsRoutes);     // 把 newsRoutes 中定义的所有路由 挂载到 /api/stocks 路径下
 app.use('/api/portfolio', holdingsRoutes); // 为新的持仓路由添加前缀
+app.use('/api/indexes', indexRoutes); // *** 为新的指数路由添加前缀 ***
 // // app.use('/api/stocks', quoteRoutes);
 // app.use('/api/stocks', historyRoutes);
 
