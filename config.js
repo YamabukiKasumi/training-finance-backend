@@ -3,7 +3,7 @@ module.exports = {
   rapidapi: {
     yahooFinance: {
       host: 'yahoo-finance15.p.rapidapi.com',
-      key: '6c1145dd7bmsh7bd7f45ee4bc0fbp11d873jsn05fb8b00a89a' // 新的key
+      key: '4f15e1d7b7msh3984be866918c9bp1991e5isn13869907624b' // 新的key
     }
   },
   api: {
