@@ -92,6 +92,18 @@ async function cleanData(quoteData) {
 }
 
 
+// 如果 stockType 是 null，则填充为 'ETF'
+async function fillMissingStockType(data) {
+  return data.map(item => {
+    if (item.stockType === null) {
+      return { ...item, stockType: 'ETF' };
+    }
+    return item;
+  });
+}
+
+
+
 // 写入或更新 stock_market 数据表
 async function saveToStockMarket(cleanData) {
   const dbConfig = config.db;
@@ -164,9 +176,14 @@ async function main(){
         console.log(`\n🔍 清理数据：${ticker}`);
         const cleanedData = await cleanData(quoteData);
         console.log('🧪 清理后的数据:', cleanedData);
+
+        console.log(`\n🔍 填充ETF类型缺失的 stockType：${ticker}`)
+        const filledData = await fillMissingStockType([cleanedData]);
+        console.log('🧪 填充后的数据:', filledData[0]);
+
         
         console.log(`\n🔍 写入 stock_market 数据表：${ticker}`);
-        await saveToStockMarket(cleanedData);
+        await saveToStockMarket(filledData[0]);
 
       } catch (err) {
         console.error(`❌ 错误处理 symbol=${ticker}`, err.message);
