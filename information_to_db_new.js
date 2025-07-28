@@ -178,6 +178,47 @@ function generateRandomQuantity() {
 }
 
 // --- 新增/修改辅助函数 ---
+
+/**
+ * 将一个指定的日期字符串转换为包含日期字符串和对应 Unix 时间戳的对象。
+ * 生成的日期将被设置为 UTC 时间的 00:00:00.000。
+ *
+ * @param {string} dateString - 指定的日期字符串，格式为 'YYYY-MM-DD'
+ * @returns {{dateStr: string, timestamp: number}|null} 包含日期字符串和Unix时间戳(秒)的对象，如果日期无效则返回 null
+ */
+function getPurchaseDate(dateString) {
+    if (!dateString || typeof dateString !== 'string' || !/^\d{4}-\d{2}-\d{2}$/.test(dateString)) {
+        console.error(`❌ 无效的日期格式: "${dateString}"。请使用 'YYYY-MM-DD' 格式。`);
+        return null;
+    }
+
+    try {
+        // 创建 Date 对象，并明确指定为 UTC 时间
+        const specificDate = new Date(dateString + 'T00:00:00Z');
+
+        // 验证日期是否有效 (例如，不会将 '2023-02-30' 解析为有效日期)
+        if (isNaN(specificDate.getTime())) {
+            throw new Error('无效的日期值');
+        }
+
+        // 格式化为 'YYYY-MM-DD' 字符串 (这步主要是为了确保格式一致性)
+        const dateStr = specificDate.toISOString().split('T')[0];
+
+        // 获取该日期的 Unix 时间戳 (秒)
+        const timestampSec = Math.floor(specificDate.getTime() / 1000);
+        
+        console.log(`📅 已处理指定买入日期: ${dateStr} (时间戳: ${timestampSec})`);
+
+        return { dateStr, timestamp: timestampSec };
+
+    } catch (error) {
+        console.error(`❌ 处理日期 "${dateString}" 时出错:`, error.message);
+        return null;
+    }
+}
+// --- 函数结束 ---
+
+// --- 新增/修改辅助函数 ---
 /**
  * 为新生成的持仓生成一个在指定日期范围内的随机买入日期和时间戳。
  * 生成的日期将被设置为 UTC 时间的 00:00:00.000，并返回对应的 Unix 时间戳（秒）。
@@ -255,7 +296,7 @@ async function main() {
     console.log('=== 股票数据获取与存储脚本 (含买入时间) ===');
 
     // 1. 定义要获取的股票列表
-    const tickers = ['AAPL', 'MSFT', 'GOOGL', 'TSLA', 'AMZN', 'NVDA'];
+    const tickers = ['AAPL', 'MSFT', 'GOOGL', 'TSLA', 'AMZN', 'SPY', 'AAASLXX', 'VTV', 'NFLX', 'VTI'];
     console.log(`📋 目标股票列表: ${tickers.join(', ')}`);
 
     // 2. 从 API 获取股票数据
@@ -288,13 +329,15 @@ async function main() {
                 };
             } else {
                 // 如果数据库记录中没有买入时间（可能旧数据），则为它生成一个
-                console.log(`⚠️  股票 ${symbol} 在数据库中没有买入时间，将生成一个随机时间。`);
-                purchaseDateObj = generateRandomPurchaseDate();
+                // console.log(`⚠️  股票 ${symbol} 在数据库中没有买入时间，将生成一个随机时间。`);
+                console.log(`⚠️  股票 ${symbol} 在数据库中没有买入时间，将生成一个固定时间。`);
+                purchaseDateObj = getPurchaseDate('2025-06-25');
             }
         } else {
             // 如果数据库中没有记录，则生成新的随机持仓和买入时间
             finalQuantity = generateRandomQuantity();
-            purchaseDateObj = generateRandomPurchaseDate(); // 使用默认日期范围 '2020-01-01' to '2024-12-31'
+            purchaseDateObj = getPurchaseDate('2025-06-25');
+            // purchaseDateObj = generateRandomPurchaseDate(); // 使用默认日期范围 '2020-01-01' to '2024-12-31'
         }
         
         return {
