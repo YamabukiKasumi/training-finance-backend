@@ -1,10 +1,19 @@
 {
-  "url": "https://www.reuters.com/world/china/huawei-shows-off-ai-computing-system-rival-nvidias-top-product-2025-07-26/",
-  "img": "https://cdn.snapi.dev/images/v1/a/v/7/nvda20-2686533-3199843.jpg",
-  "title": "Huawei shows off AI computing system to rival Nvidia's top product",
-  "text": "China's Huawei Technologies showed off an AI computing system on Saturday that one industry expert has said rivals Nvidia's most advanced offering, as the Chinese technology giant seeks to capture mar...",
-  "source": "Reuters",
+  "url": "https://stockanalysis.com/out/news?url=https://seekingalpha.com/article/4804297-5-stocks-im-buying-as-retail-investors-take-over-the-market",
+  "img": "https://cdn.snapi.dev/images/v1/u/c/k/dlm22-2894197-3199884.jpg",
+  "title": "5 Stocks I'm Buying As Retail Investors Take Over The Market",
+  "text": "Retail-driven meme stock mania is back, echoing 2021's irrational exuberance, with surges in fundamentally weak, heavily shorted stocks. Market leadership is shifting from the \"Magnificent 7\" to the \"...",
+  "source": "Seeking Alpha",
   "type": "Article",
-  "time": "Jul 26, 2025, 6:11 AM EDT",
-  "ago": "58 minutes ago"
+  "tickers": [
+    "$AEO",
+    "#ARKK",
+    "$ARTNA",
+    "$AVGO",
+    "$BYND",
+    "#CHAT",
+    "$DLR"
+  ],
+  "time": "Jul 26, 2025, 8:10 AM EDT",
+  "ago": "1 day ago"
 }
