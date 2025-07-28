@@ -362,7 +362,7 @@ async function saveToDatabase(recentItems, symbol) {
         // 假设 unique_symbol_time (symbol, data_timestamp_unix) 是唯一键
         const sql = `
             INSERT INTO stock_history 
-            (symbol, data_timestamp, data_timestamp_unix, open_price, high_price, low_price, close_price, volume, security_type) 
+            (symbol, data_timestamp, data_timestamp_unix, open_price, high_price, low_price, close_price, volume) 
             VALUES ?
             ON DUPLICATE KEY UPDATE
                 data_timestamp=VALUES(data_timestamp),
@@ -370,8 +370,8 @@ async function saveToDatabase(recentItems, symbol) {
                 high_price=VALUES(high_price),
                 low_price=VALUES(low_price),
                 close_price=VALUES(close_price),
-                volume=VALUES(volume),
-                security_type=VALUES(security_type)
+                volume=VALUES(volume)
+            
         `;
 
         const values = recentItems.map(item => [
