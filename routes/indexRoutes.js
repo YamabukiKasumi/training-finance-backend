@@ -8,11 +8,12 @@ const indexController = require('../controllers/indexController');
  * @swagger
  * /api/indexes/common-indexes:
  *   get:
- *     summary: 获取常见指数的实时报价
- *     description: 调用外部金融 API（如 FMP）获取常见指数（例如标普500、纳指、道琼斯等）的实时报价信息。
+ *     summary: Get real-time quotations for common indices
+ *     description: |
+ *       Call external financial APIs (such as FMP) to obtain real-time quotation information for common indices (e.g., S&P 500, NASDAQ, Dow Jones, etc.).
  *     responses:
  *       200:
- *         description: 成功返回指数数据数组
+ *         description: Successfully returned the index data array
  *         content:
  *           application/json:
  *             schema:
@@ -35,7 +36,7 @@ const indexController = require('../controllers/indexController');
  *                     format: float
  *                     example: -0.3421
  *       500:
- *         description: 获取指数数据失败或 FMP API 错误
+ *         description: Failed to retrieve index data or FMP API error
  */
 
 

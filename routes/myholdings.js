@@ -8,11 +8,13 @@ const holdingsController = require('../controllers/holdingsController');
  * @swagger
  * /api/portfolio/my-holdings:
  *   get:
- *     summary: 获取当前用户的持仓收益情况
- *     description: 从数据库中获取所有持仓记录，结合历史买入价和实时行情，计算每只股票的收益、总市值、成本等信息。
+ *     summary: Obtain the current user's position income situation
+ *     description: |
+ *       Obtain all holding records from the database, combine historical purchase prices and real-time market conditions,
+ *       and calculate the returns, total market value, cost and other information of each stock
  *     responses:
  *       200:
- *         description: 成功返回投资组合数据
+ *         description: Successfully returned the portfolio data
  *         content:
  *           application/json:
  *             schema:
@@ -36,7 +38,7 @@ const holdingsController = require('../controllers/holdingsController');
  *                   example: 10.18
  *                 holdings:
  *                   type: array
- *                   description: 每只股票的详细持仓信息
+ *                   description: Detailed holding information of each stock
  *                   items:
  *                     type: object
  *                     properties:
@@ -80,9 +82,9 @@ const holdingsController = require('../controllers/holdingsController');
  *                       note:
  *                         type: string
  *                         nullable: true
- *                         example: 当前价格获取失败
+ *                         example: The current price acquisition failed
  *       500:
- *         description: 服务器内部错误或数据库连接失败
+ *         description: Failed to retrieve portfolio data or database connection error
  */
 
 

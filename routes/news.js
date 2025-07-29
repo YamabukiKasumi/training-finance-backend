@@ -7,8 +7,10 @@ const newsController = require('../controllers/newsController');
  * @swagger
  * /api/stocks/news:
  *   get:
- *     summary: 获取股票相关新闻
- *     description: 根据传入的股票代码（symbols）获取对应的新闻信息。symbols 参数既可以通过查询参数，也可以通过请求头传入。
+ *     summary: Get stock-related news
+ *     description: |
+ *       Obtain the corresponding news information based on the incoming stock codes (symbols). 
+ *       symbols parameters can be passed in either through query parameters or through request headers.
  *     parameters:
  *       - in: query
  *         name: symbols
@@ -16,17 +18,17 @@ const newsController = require('../controllers/newsController');
  *           type: string
  *           example: AAPL,SPY
  *         required: false
- *         description: 用逗号分隔的股票代码，如 AAPL,SPY
+ *         description: Stock codes separated by commas, such as AAPL and SPY
  *       - in: header
  *         name: symbols
  *         schema:
  *           type: string
  *           example: AAPL,SPY
  *         required: false
- *         description: （可选）也可以通过 HTTP Header 提供 symbols
+ *         description: (Optional) symbols can also be provided through HTTP Headers
  *     responses:
  *       200:
- *         description: 成功返回新闻数据
+ *         description: Successfully returned the news data
  *         content:
  *           application/json:
  *             schema:
@@ -51,9 +53,9 @@ const newsController = require('../controllers/newsController');
  *                     format: date-time
  *                     example: 2025-07-29T10:00:00Z
  *       400:
- *         description: 缺少 symbols 参数或格式错误
+ *         description: Missing symbols parameter or format error
  *       500:
- *         description: 服务器内部错误
+ *         description: Internal server error
  */
 
 
