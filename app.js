@@ -10,6 +10,8 @@ const marketRoutes = require('./routes/market');
 const holdingsRoutes = require('./routes/myholdings'); // 新增的路由
 const indexRoutes = require('./routes/indexRoutes'); // *** 新增的路由 ***
 const portfolioAnalysisRoutes = require('./routes/portfolioAnalysisRoutes');
+const dailyPerformanceRoutes = require('./routes/dailyPerformanceRoutes'); // *** 1. 引入新路由 ***
+const ratingRoutes = require('./routes/ratingRoutes');
 // const quoteRoutes = require('./routes/quote');
 // const historyRoutes = require('./routes/history');
 const PORT = 3001;
@@ -33,6 +35,8 @@ app.use('/api/stocks', marketRoutes); // 把 marketRoutes 中定义的所有路�
 app.use('/api/portfolio', holdingsRoutes); // 为新的持仓路由添加前缀
 app.use('/api/indexes', indexRoutes); // *** 为新的指数路由添加前缀 ***
 app.use('/api/portfolio', portfolioAnalysisRoutes);
+app.use('/api/portfolio', dailyPerformanceRoutes); // *** 2. 使用新路由 ***
+app.use('/api/portfolio', ratingRoutes);
 
 // 错误处理中间件
 app.use((err, req, res, next) => {
