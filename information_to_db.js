@@ -231,6 +231,5 @@ module.exports = {
     fetchStockDataFromAPI,
     fetchUserHoldingsFromDB,
     storeStockDataToDB,
-    generateRandomQuantity,
-    main
+    generateRandomQuantity
 };

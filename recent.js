@@ -12,6 +12,15 @@ const BASE_URL = config.api.baseUrl;
 const ENDPOINT = config.api.endpoints.history;
 
 const API_URL = `${BASE_URL}${ENDPOINT}`
+
+// --- 新增：延迟函数 ---
+/**
+ * 创建一个指定毫秒数的延迟
+ * @param {number} ms - 要延迟的毫秒数
+ * @returns {Promise<void>}
+ */
+const delay = ms => new Promise(resolve => setTimeout(resolve, ms));
+
 /**
  * 获取股票历史数据
  * @param {string} symbol - 股票代码
@@ -412,61 +421,55 @@ async function saveToDatabase(recentItems, symbol) {
     }
 }
 
-// --- 主函数 ---
 async function main() {
-    console.log('=== Yahoo Finance 股票历史数据获取器 (最终修正版 - 处理数组格式 + 保存到MySQL) ===\n');
+    console.log('=== Yahoo Finance 批量股票历史数据获取器 ===\n');
+
+    // 1. 定义要处理的股票列表
+    const tickers = ['AAPL', 'MSFT', 'GOOGL', 'TSLA', 'AMZN', 'SPY', 'NVDA', 'VTV', 'NFLX', 'VTI'];
+    // const tickers = ['NVDA'];
 
 
-//     const symbol = 'SPY';   // ETF类型
+    // 2. 定义请求间隔（毫秒），用于速率控制
+    const REQUEST_INTERVAL_MS = 1500; // 设置为 1.5 秒，可以根据 API 限制调整
 
-    const symbol = 'MSFT';
+    // 3. 定义获取参数
+    const interval = '1d';
+    const limitDaysToFetch = 50; // 获取最近 70 天的数据
 
-    const interval = '1d'; // 注意：你现在的数据是日线 '1d'
-    const limit = 70;     
+    // 4. 遍历股票列表并处理每一个
+    for (let i = 0; i < tickers.length; i++) {
+        const symbol = tickers[i];
+        console.log(`\n--- [${i + 1}/${tickers.length}] 开始处理: ${symbol} ---`);
 
-    try {
-        // 1. 获取历史数据
-        const limitNum = 50
-        const historyData = await getStockHistory(symbol, interval, limit);
+        try {
+            // a. 获取历史数据
+            const historyData = await getStockHistory(symbol, interval, limitDaysToFetch * 2); // 获取稍多一点数据以确保覆盖
 
-        // 2. 保存完整响应数据 (可选，如果需要)
-        // saveToFile(historyData, `full-history-${symbol}.json`);
+            // b. 筛选最近 N 天的数据
+            const recentItems = filterRecentDays(historyData, limitDaysToFetch);
 
-        // 3. 筛选最近七天的数据
-        const recentItems = filterRecentDays(historyData,limitNum);
+            // c. 显示筛选后的数据 (可选)
+            // displayRecentData(recentItems, symbol);
 
-        // 4. 确定用于显示的时间戳字段 (这部分逻辑可能需要根据你实际的返回数据微调)
-        let displayTimestampField = 'timestamp_unix'; // 通常使用 Unix 时间戳进行内部处理
-        // 如果 recentItems[0] 有 timestamp 字段且是字符串 'YYYY-MM-DD'，也可以用它
-        // if (recentItems.length > 0 && recentItems[0].timestamp && typeof recentItems[0].timestamp === 'string' && /^\d{4}-\d{2}-\d{2}$/.test(recentItems[0].timestamp)) {
-        //     displayTimestampField = 'timestamp';
-        // }
+            // d. 保存筛选后的数据到 JSON 文件 (可选)
+            saveToFile({ meta: { symbol }, recentItems }, `recent-${limitDaysToFetch}days-${symbol}.json`);
 
-        // 5. 显示筛选后的数据
-        displayRecentData(recentItems, symbol, displayTimestampField);
+            // e. 保存到 MySQL 数据库
+            await saveToDatabase(recentItems, symbol);
 
-        // 6. 保存筛选后的数据到 JSON 文件 (可选)
-        const recentDataToSave = {
-            meta: historyData.meta || {},
-            recentItems: recentItems,
-            filterInfo: {
-                days: limitNum,
-                itemCount: recentItems.length,
-                timestampField: displayTimestampField
-            }
-        };
-        saveToFile(recentDataToSave, `recent-${limitNum}days-${symbol}.json`);
+        } catch (error) {
+            // 如果单个股票失败，记录错误并继续处理下一个
+            console.error(`💥 处理 ${symbol} 时发生严重错误，跳过此股票。`);
+        }
 
-        // 7. --- 新增：保存到 MySQL 数据库 ---
-        await saveToDatabase(recentItems, symbol);
-
-    } catch (error) {
-        console.error('\n💥 主函数执行出错:', error.message);
-        console.error('错误堆栈:', error.stack);
-        process.exit(1);
+        // f. 在请求之间添加延迟（除了最后一个）
+        if (i < tickers.length - 1) {
+            console.log(`⏱️ 等待 ${REQUEST_INTERVAL_MS}ms 以避免速率限制...`);
+            await delay(REQUEST_INTERVAL_MS);
+        }
     }
 
-    console.log('\n✅ === 执行完成 ===');
+    console.log('\n✅ === 所有股票处理完成 ===');
 }
 
 // 如果直接运行此文件，则执行主函数
@@ -483,5 +486,5 @@ module.exports = {
     filterRecentDays,
     displayRecentData,
     saveToFile,
-    saveToDatabase // 导出新函数
+    saveToDatabase
 };

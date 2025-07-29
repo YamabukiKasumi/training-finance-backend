@@ -318,6 +318,5 @@ module.exports = {
     fetchAllHoldings,
     fetchPurchasePrice,
     fetchCurrentPrices,
-    calculatePortfolioReturns,
-    main
+    calculatePortfolioReturns
 };

@@ -110,6 +110,7 @@ async function fetchCurrentPrices(symbols) {
 
     try {
         console.log(`🔍 正在从 API 获取股票价格: ${symbols.join(', ')}`);
+        console.log(`[DEBUG] Using API Key: ${apiKey}`); // 添加这行来调试
         const response = await axios.get(API_URL, {
             params: { ticker: symbols.join(',') },
             headers: {
