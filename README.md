@@ -110,3 +110,42 @@ The return value is a json object, which is shown as follows:
     ]
 }
 ```
+ratingService.js
+```
+{
+    "code":200,
+    "message":"成功",
+    "data": {
+        "averageDiscountedCashFlowScore":3,
+        "averageReturnOnAssetsScore":4.71,
+        "averageDebtToEquityScore":2.71,
+        "averagePriceToEarningsScore":1.71,
+        "averagePriceToBookScore":1
+    }
+}
+```
+
+dailuPerformanceService.js
+```
+{
+    "code": 200,
+    "message": "成功",
+    "data": [
+        {
+            "date": "2025-06-29",
+            "totalAssets": 263635.43,
+            "dailyProfitLoss": 0,
+            "dailyReturnPercentage": 0,
+            "benchmarkReturnPercentage": 0
+        },
+        {
+            "date": "2025-06-30",
+            "totalAssets": 264733.61,
+            "dailyProfitLoss": 1098.18,
+            "dailyReturnPercentage": 0.42,
+            "benchmarkReturnPercentage": 0.0761
+        },
+        ...
+    ]
+}
+```
