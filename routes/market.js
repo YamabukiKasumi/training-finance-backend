@@ -6,8 +6,8 @@ const marketController = require('../controllers/marketController');
  * @swagger
  * /api/stocks/market:
  *   post:
- *     summary: 获取股票市场行情
- *     description: 提交股票代码和类型列表，返回对应市场行情数据。
+ *     summary: Obtain market data for all stocks
+ *     description: Submit the list of stock codes and types, and return the corresponding market data
  *     requestBody:
  *       required: true
  *       content:
@@ -28,7 +28,7 @@ const marketController = require('../controllers/marketController');
  *                   example: Common Stock
  *     responses:
  *       200:
- *         description: 成功返回市场行情数据
+ *         description: Successfully returned market data
  *         content:
  *           application/json:
  *             schema:
@@ -55,9 +55,9 @@ const marketController = require('../controllers/marketController');
  *                     format: date-time
  *                     example: 2025-07-29T14:30:00Z
  *       400:
- *         description: 请求体格式错误或缺少字段
+ *         description: Request a type error or missing field
  *       500:
- *         description: 服务器内部错误
+ *         description: Internal server error
  */
 
 // router.post('/news', newsController.getNewsBySymbols);  // post请求，获取指定股票的最新新闻
