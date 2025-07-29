@@ -3,7 +3,7 @@ module.exports = {
   rapidapi: {
     yahooFinance: {
       host: 'yahoo-finance15.p.rapidapi.com',
-      key: 'd08f5d4d17msh3d0d4ab5427563ep1113b5jsn460ca03ada15' // 新的key
+      key: '1df83dd948msh18d852f961571f2p140ef4jsn3353c9eb4c81' // 新的key
     }
   },
   api: {
@@ -53,7 +53,7 @@ module.exports = {
   },
   // *** 2. 新增评级服务的配置 ***
   ratingConfig: {
-    requestIntervalMs: 300, // 每次API请求之间的间隔，单位毫秒
+    requestIntervalMs: 100, // 每次API请求之间的间隔，单位毫秒
     allowedSymbols: new Set([ // 使用 Set 数据结构以便快速查询
       'AAPL', 'TSLA', 'AMZN', 'MSFT', 'NVDA', 'GOOGL', 'META', 'NFLX', 'JPM', 
       'V', 'BAC', 'AMD', 'PYPL', 'DIS', 'T', 'PFE', 'COST', 'INTC', 'KO', 
