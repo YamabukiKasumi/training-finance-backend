@@ -21,31 +21,31 @@ exports.getMarketDataForSymbols = async (symbols) => {
   const [rows] = await db.execute(sql, values);
 
 // // 1️⃣ 异步刷新每个 symbol 的新闻
-  // symbols.forEach(async (symbol) => {
-  //   try {
-  //     const quoteData = await fetchQuote(ticker, type);
-        // console.log('✅ 获取结果:', quoteData);
+//   symbols.forEach(async (symbol) => {
+//     try {
+//       const quoteData = await fetchQuote(ticker, type);
+//         console.log('✅ 获取结果:', quoteData);
 
-        // console.log(`\n🔍 写入 JSON 文件：${ticker}`);
-        // await writeToJSON(ticker, quoteData);
+//         console.log(`\n🔍 写入 JSON 文件：${ticker}`);
+//         await writeToJSON(ticker, quoteData);
 
-        // console.log(`\n🔍 清理数据：${ticker}`);
-        // const cleanedData = await cleanData(quoteData);
-        // console.log('🧪 清理后的数据:', cleanedData);
+//         console.log(`\n🔍 清理数据：${ticker}`);
+//         const cleanedData = await cleanData(quoteData);
+//         console.log('🧪 清理后的数据:', cleanedData);
 
-        // console.log(`\n🔍 填充ETF类型缺失的 stockType：${ticker}`)
-        // const filledData = await fillMissingStockType([cleanedData]);
-        // console.log('🧪 填充后的数据:', filledData[0]);
+//         console.log(`\n🔍 填充ETF类型缺失的 stockType：${ticker}`)
+//         const filledData = await fillMissingStockType([cleanedData]);
+//         console.log('🧪 填充后的数据:', filledData[0]);
 
         
-        // console.log(`\n🔍 写入 stock_market 数据表：${ticker}`);
-        // await saveToStockMarket(filledData[0]);
+//         console.log(`\n🔍 写入 stock_market 数据表：${ticker}`);
+//         await saveToStockMarket(filledData[0]);
 
-  //     console.log(`✅ 异步更新大盘成功: ${symbol}`);
-  //   } catch (err) {
-  //     console.error(`❌ 异步更新大盘失败: ${symbol}`, err.message);
-  //   }
-  // });
+//       console.log(`✅ 异步更新大盘成功: ${symbol}`);
+//     } catch (err) {
+//       console.error(`❌ 异步更新大盘失败: ${symbol}`, err.message);
+//     }
+//   });
 
   // 2️⃣ 立即返回已有股票市场数据
   if (rows.length === 0) {
