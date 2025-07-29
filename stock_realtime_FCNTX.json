@@ -1,0 +1,24 @@
+{
+  "symbol": "FCNTX",
+  "companyName": "Fidelity Contra Fund",
+  "stockType": "Managed Fund",
+  "exchange": "Nasdaq Fund Network",
+  "primaryData": {
+    "lastSalePrice": "$23.81",
+    "netChange": "+0.04",
+    "percentageChange": "+0.17%",
+    "deltaIndicator": "up",
+    "lastTradeTimestamp": "Jul 28, 2025",
+    "isRealTime": false,
+    "bidPrice": "",
+    "askPrice": "",
+    "bidSize": "",
+    "askSize": "",
+    "volume": "",
+    "currency": "USD"
+  },
+  "secondaryData": null,
+  "marketStatus": null,
+  "assetClass": "MUTUALFUNDS",
+  "keyStats": null
+}

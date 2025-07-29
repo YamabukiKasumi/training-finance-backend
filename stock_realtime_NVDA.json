@@ -1,26 +1,26 @@
 {
-  "symbol": "AAPL",
-  "companyName": "Apple Inc. Common Stock",
+  "symbol": "NVDA",
+  "companyName": "NVIDIA Corporation Common Stock",
   "stockType": "Common Stock",
   "exchange": "NASDAQ-GS",
   "primaryData": {
-    "lastSalePrice": "$213.98",
-    "netChange": "-0.07",
-    "percentageChange": "-0.03%",
-    "deltaIndicator": "down",
-    "lastTradeTimestamp": "Jul 29, 2025 4:05 AM ET",
+    "lastSalePrice": "$179.05",
+    "netChange": "+2.30",
+    "percentageChange": "+1.30%",
+    "deltaIndicator": "up",
+    "lastTradeTimestamp": "Jul 29, 2025 4:06 AM ET",
     "isRealTime": true,
-    "bidPrice": "$213.85",
-    "askPrice": "$213.98",
-    "bidSize": "378",
-    "askSize": "4",
-    "volume": "3,515",
+    "bidPrice": "$179.04",
+    "askPrice": "$179.08",
+    "bidSize": "323",
+    "askSize": "408",
+    "volume": "183,485",
     "currency": null
   },
   "secondaryData": {
-    "lastSalePrice": "$214.05",
-    "netChange": "+0.17",
-    "percentageChange": "+0.08%",
+    "lastSalePrice": "$176.75",
+    "netChange": "+3.25",
+    "percentageChange": "+1.87%",
     "deltaIndicator": "up",
     "lastTradeTimestamp": "Closed at Jul 28, 2025 4:00 PM ET",
     "isRealTime": false,
@@ -36,7 +36,7 @@
   "keyStats": {
     "fiftyTwoWeekHighLow": {
       "label": "52 Week Range:",
-      "value": "169.21 - 260.10"
+      "value": "86.62 - 174.72"
     },
     "dayrange": {
       "label": "High/Low:",

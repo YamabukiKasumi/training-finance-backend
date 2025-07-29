@@ -1,26 +1,26 @@
 {
-  "symbol": "AAPL",
-  "companyName": "Apple Inc. Common Stock",
+  "symbol": "AMZN",
+  "companyName": "Amazon.com, Inc. Common Stock",
   "stockType": "Common Stock",
   "exchange": "NASDAQ-GS",
   "primaryData": {
-    "lastSalePrice": "$213.98",
-    "netChange": "-0.07",
-    "percentageChange": "-0.03%",
-    "deltaIndicator": "down",
+    "lastSalePrice": "$233.37",
+    "netChange": "+0.58",
+    "percentageChange": "+0.25%",
+    "deltaIndicator": "up",
     "lastTradeTimestamp": "Jul 29, 2025 4:05 AM ET",
     "isRealTime": true,
-    "bidPrice": "$213.85",
-    "askPrice": "$213.98",
-    "bidSize": "378",
-    "askSize": "4",
-    "volume": "3,515",
+    "bidPrice": "$233.34",
+    "askPrice": "$233.60",
+    "bidSize": "200",
+    "askSize": "136",
+    "volume": "7,608",
     "currency": null
   },
   "secondaryData": {
-    "lastSalePrice": "$214.05",
-    "netChange": "+0.17",
-    "percentageChange": "+0.08%",
+    "lastSalePrice": "$232.79",
+    "netChange": "+1.35",
+    "percentageChange": "+0.58%",
     "deltaIndicator": "up",
     "lastTradeTimestamp": "Closed at Jul 28, 2025 4:00 PM ET",
     "isRealTime": false,
@@ -36,7 +36,7 @@
   "keyStats": {
     "fiftyTwoWeekHighLow": {
       "label": "52 Week Range:",
-      "value": "169.21 - 260.10"
+      "value": "151.61 - 242.52"
     },
     "dayrange": {
       "label": "High/Low:",

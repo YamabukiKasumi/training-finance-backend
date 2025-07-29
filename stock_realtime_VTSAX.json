@@ -1,0 +1,24 @@
+{
+  "symbol": "VTSAX",
+  "companyName": "Vanguard Total Stock Market Index Fd Admiral Shs",
+  "stockType": "Managed Fund",
+  "exchange": "Nasdaq Fund Network",
+  "primaryData": {
+    "lastSalePrice": "$152.64",
+    "netChange": "-0.01",
+    "percentageChange": "-0.01%",
+    "deltaIndicator": "down",
+    "lastTradeTimestamp": "Jul 28, 2025",
+    "isRealTime": false,
+    "bidPrice": "",
+    "askPrice": "",
+    "bidSize": "",
+    "askSize": "",
+    "volume": "",
+    "currency": "USD"
+  },
+  "secondaryData": null,
+  "marketStatus": null,
+  "assetClass": "MUTUALFUNDS",
+  "keyStats": null
+}

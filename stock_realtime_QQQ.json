@@ -1,0 +1,37 @@
+{
+  "symbol": "QQQ",
+  "companyName": "Invesco QQQ Trust, Series 1",
+  "stockType": null,
+  "exchange": "NASDAQ-GM",
+  "primaryData": {
+    "lastSalePrice": "$570.57",
+    "netChange": "+2.43",
+    "percentageChange": "+0.43%",
+    "deltaIndicator": "up",
+    "lastTradeTimestamp": "Jul 29, 2025 4:06 AM ET",
+    "isRealTime": true,
+    "bidPrice": "$570.51",
+    "askPrice": "$570.56",
+    "bidSize": "110",
+    "askSize": "56",
+    "volume": "24,076",
+    "currency": null
+  },
+  "secondaryData": {
+    "lastSalePrice": "$568.14",
+    "netChange": "+1.77",
+    "percentageChange": "+0.31%",
+    "deltaIndicator": "up",
+    "lastTradeTimestamp": "Closed at Jul 28, 2025 4:00 PM ET",
+    "isRealTime": false,
+    "bidPrice": "",
+    "askPrice": "",
+    "bidSize": "",
+    "askSize": "",
+    "volume": "",
+    "currency": null
+  },
+  "marketStatus": "Pre-Market",
+  "assetClass": "ETF",
+  "keyStats": null
+}
