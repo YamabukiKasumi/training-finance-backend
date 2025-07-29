@@ -18,3 +18,4 @@ Body: json格式
         { "ticker": "VFIAX", "type": "Managed Fund" }
     ]
 PS：在前端需要同时传递“股票+类型”两个参数，其中类型type字段有三个值分别为：Common Stock，ETF，Managed Fund
+//test
