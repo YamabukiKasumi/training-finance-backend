@@ -2,6 +2,9 @@
 const express = require('express');
 const cors = require('cors');
 
+const swaggerUi = require('swagger-ui-express');
+const swaggerJsdoc = require('swagger-jsdoc');
+
 const newsRoutes = require('./routes/news');
 const marketRoutes = require('./routes/market'); 
 const holdingsRoutes = require('./routes/myholdings'); // 新增的路由
@@ -15,6 +18,7 @@ const PORT = 3001;
 //111
 
 const app = express();
+
 
 const corsOptions = {
   origin: 'http://127.0.0.1:5500' // 只允许来自这个源的请求
@@ -61,6 +65,33 @@ app.use((err, req, res, next) => {
   // res.status(statusCode).json(errorResponse(errorMessage, statusCode, process.env.NODE_ENV === 'development' ? err.stack : null));
 });
 
+
+// swagger 配置
+const swaggerOptions = {
+  definition: {
+    openapi: '3.0.0',
+    info: {
+      title: 'Personal asset allocation API Document',
+      version: '1.0.0',
+      description: 'Node.js + Express API 文档',
+    },
+    servers: [
+      {
+        url: 'http://localhost:3001',
+      },
+    ],
+  },
+  apis: ['./routes/*.js'], // 指定注释API的文件路径（可以换成你的）
+};
+
+const swaggerSpec = swaggerJsdoc(swaggerOptions);
+
+// 使用 Swagger 中间件
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
+
+
+
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
+  console.log(`Swagger 文档: http://localhost:${PORT}/api-docs`);
 });
