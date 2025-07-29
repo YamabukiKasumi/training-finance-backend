@@ -1,12 +1,12 @@
 {
-  "symbol": "VFIAX",
-  "companyName": "Vanguard 500 Index Fd Admiral Shs",
+  "symbol": "FCNTX",
+  "companyName": "Fidelity Contra Fund",
   "stockType": "Managed Fund",
   "exchange": "Nasdaq Fund Network",
   "primaryData": {
-    "lastSalePrice": "$590.00",
-    "netChange": "+0.11",
-    "percentageChange": "+0.02%",
+    "lastSalePrice": "$23.81",
+    "netChange": "+0.04",
+    "percentageChange": "+0.17%",
     "deltaIndicator": "up",
     "lastTradeTimestamp": "Jul 28, 2025",
     "isRealTime": false,

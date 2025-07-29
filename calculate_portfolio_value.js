@@ -204,6 +204,5 @@ if (require.main === module) {
 module.exports = {
     fetchAllHoldings,
     fetchCurrentPrices,
-    calculatePortfolioValue,
-    main
+    calculatePortfolioValue
 };

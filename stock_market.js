@@ -172,8 +172,7 @@ async function main(){
         { ticker: 'QQQ', type: ETF },
         { ticker: 'VFIAX', type: MUTUALFUNDS },
         { ticker: 'FCNTX', type: MUTUALFUNDS },
-        { ticker: 'VTSAX', type: MUTUALFUNDS }
-        
+        { ticker: 'VTSAX', type: MUTUALFUNDS }        
     ];
     // const symbolsWithType = [
     //     // 示例股票和类型
