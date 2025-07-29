@@ -49,11 +49,11 @@ module.exports = {
   // *** 新增获取指数信息的默认符号和间隔 ***
   indexConfig: {
     defaultSymbols: ['^GSPC', '^DJI', '^IXIC', '^RUT', '^FTSE', '^N225', '^HSI'],
-    requestIntervalMs: 500, // 每个请求之间的间隔，单位毫秒 (根据FMP的速率限制调整，例如500ms)
+    requestIntervalMs: 300, // 每个请求之间的间隔，单位毫秒 (根据FMP的速率限制调整，例如500ms)
   },
   // *** 2. 新增评级服务的配置 ***
   ratingConfig: {
-    requestIntervalMs: 500, // 每次API请求之间的间隔，单位毫秒
+    requestIntervalMs: 300, // 每次API请求之间的间隔，单位毫秒
     allowedSymbols: new Set([ // 使用 Set 数据结构以便快速查询
       'AAPL', 'TSLA', 'AMZN', 'MSFT', 'NVDA', 'GOOGL', 'META', 'NFLX', 'JPM', 
       'V', 'BAC', 'AMD', 'PYPL', 'DIS', 'T', 'PFE', 'COST', 'INTC', 'KO', 
