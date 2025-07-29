@@ -1,0 +1,24 @@
+{
+  "symbol": "VIG",
+  "companyName": "Vanguard Div Appreciation ETF",
+  "stockType": null,
+  "exchange": "PSE",
+  "primaryData": {
+    "lastSalePrice": "$208.67",
+    "netChange": "-0.47",
+    "percentageChange": "-0.22%",
+    "deltaIndicator": "down",
+    "lastTradeTimestamp": "Jul 29, 2025",
+    "isRealTime": false,
+    "bidPrice": "N/A",
+    "askPrice": "N/A",
+    "bidSize": "N/A",
+    "askSize": "N/A",
+    "volume": "892,345",
+    "currency": null
+  },
+  "secondaryData": null,
+  "marketStatus": "Pre-Market",
+  "assetClass": "ETF",
+  "keyStats": null
+}

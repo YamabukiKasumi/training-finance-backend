@@ -1,0 +1,24 @@
+{
+  "symbol": "VTI",
+  "companyName": "Vanguard Total Stock Market ETF",
+  "stockType": null,
+  "exchange": "PSE",
+  "primaryData": {
+    "lastSalePrice": "$313.60",
+    "netChange": "-0.09",
+    "percentageChange": "-0.03%",
+    "deltaIndicator": "down",
+    "lastTradeTimestamp": "Jul 29, 2025",
+    "isRealTime": false,
+    "bidPrice": "$313.90",
+    "askPrice": "$490.77",
+    "bidSize": "2",
+    "askSize": "100",
+    "volume": "4,797,910",
+    "currency": null
+  },
+  "secondaryData": null,
+  "marketStatus": "Pre-Market",
+  "assetClass": "ETF",
+  "keyStats": null
+}

@@ -156,10 +156,25 @@ async function main(){
     const ETF = config.stockTypes.ETF;
     const MUTUALFUNDS = config.stockTypes.MUTUALFUNDS;
     const symbolsWithType = [
-        // 示例股票和类型
+        // 示例股票和类型 'MSFT', 'GOOGL', 'TSLA', 'AMZN', 'NVDA', 'SPY', 'EEM', 'VFIAX'
         { ticker: 'AAPL', type: STOCKS },
+        { ticker: 'MSFT', type: STOCKS },
+        { ticker: 'GOOGL', type: STOCKS },
+        { ticker: 'TSLA', type: STOCKS },
+        { ticker: 'AMZN', type: STOCKS },
+        { ticker: 'NVDA', type: STOCKS },
         { ticker: 'SPY', type: ETF },
+        { ticker: 'EEM', type: ETF },
+        { ticker: 'VTI', type: ETF },
+        { ticker: 'VOO', type: ETF },
+        { ticker: 'VIG', type: ETF },
+        { ticker: 'IVV', type: ETF },
+        { ticker: 'QQQ', type: ETF },
         { ticker: 'VFIAX', type: MUTUALFUNDS },
+        { ticker: 'FCNTX', type: MUTUALFUNDS },
+        { ticker: 'VTSAX', type: MUTUALFUNDS },
+        { ticker: 'SWPPX', type: MUTUALFUNDS },
+        { ticker: 'FXAIX', type: MUTUALFUNDS }
     ];
     // const symbolsWithType = [
     //     // 示例股票和类型

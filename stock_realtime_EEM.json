@@ -1,0 +1,24 @@
+{
+  "symbol": "EEM",
+  "companyName": "iShares MSCI Emerging Index Fund",
+  "stockType": null,
+  "exchange": "PSE",
+  "primaryData": {
+    "lastSalePrice": "$49.18",
+    "netChange": "-0.33",
+    "percentageChange": "-0.67%",
+    "deltaIndicator": "down",
+    "lastTradeTimestamp": "Jul 29, 2025",
+    "isRealTime": false,
+    "bidPrice": "$49.17",
+    "askPrice": "$49.59",
+    "bidSize": "2400",
+    "askSize": "2400",
+    "volume": "27,703,376",
+    "currency": null
+  },
+  "secondaryData": null,
+  "marketStatus": "Pre-Market",
+  "assetClass": "ETF",
+  "keyStats": null
+}

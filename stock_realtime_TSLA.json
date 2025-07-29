@@ -1,26 +1,26 @@
 {
-  "symbol": "AAPL",
-  "companyName": "Apple Inc. Common Stock",
+  "symbol": "TSLA",
+  "companyName": "Tesla, Inc. Common Stock",
   "stockType": "Common Stock",
   "exchange": "NASDAQ-GS",
   "primaryData": {
-    "lastSalePrice": "$213.98",
-    "netChange": "-0.07",
-    "percentageChange": "-0.03%",
-    "deltaIndicator": "down",
-    "lastTradeTimestamp": "Jul 29, 2025 4:05 AM ET",
+    "lastSalePrice": "$326.82",
+    "netChange": "+1.23",
+    "percentageChange": "+0.38%",
+    "deltaIndicator": "up",
+    "lastTradeTimestamp": "Jul 29, 2025 4:06 AM ET",
     "isRealTime": true,
-    "bidPrice": "$213.85",
-    "askPrice": "$213.98",
-    "bidSize": "378",
-    "askSize": "4",
-    "volume": "3,515",
+    "bidPrice": "$326.71",
+    "askPrice": "$326.90",
+    "bidSize": "42",
+    "askSize": "46",
+    "volume": "38,553",
     "currency": null
   },
   "secondaryData": {
-    "lastSalePrice": "$214.05",
-    "netChange": "+0.17",
-    "percentageChange": "+0.08%",
+    "lastSalePrice": "$325.59",
+    "netChange": "+9.53",
+    "percentageChange": "+3.02%",
     "deltaIndicator": "up",
     "lastTradeTimestamp": "Closed at Jul 28, 2025 4:00 PM ET",
     "isRealTime": false,
@@ -36,7 +36,7 @@
   "keyStats": {
     "fiftyTwoWeekHighLow": {
       "label": "52 Week Range:",
-      "value": "169.21 - 260.10"
+      "value": "182.00 - 488.54"
     },
     "dayrange": {
       "label": "High/Low:",

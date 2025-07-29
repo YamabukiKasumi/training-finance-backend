@@ -1,0 +1,24 @@
+{
+  "symbol": "IVV",
+  "companyName": "iShares Core S&P 500 ETF",
+  "stockType": null,
+  "exchange": "PSE",
+  "primaryData": {
+    "lastSalePrice": "$639.92",
+    "netChange": "-0.14",
+    "percentageChange": "-0.02%",
+    "deltaIndicator": "down",
+    "lastTradeTimestamp": "Jul 29, 2025",
+    "isRealTime": false,
+    "bidPrice": "$641.48",
+    "askPrice": "$641.59",
+    "bidSize": "100",
+    "askSize": "100",
+    "volume": "9,580,953",
+    "currency": null
+  },
+  "secondaryData": null,
+  "marketStatus": "Pre-Market",
+  "assetClass": "ETF",
+  "keyStats": null
+}
