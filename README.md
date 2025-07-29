@@ -112,7 +112,17 @@ The return value is a json object, which is shown as follows:
 ```
 ratingService.js
 ```
-{"code":200,"message":"成功","data":{"averageDiscountedCashFlowScore":3,"averageReturnOnAssetsScore":4.71,"averageDebtToEquityScore":2.71,"averagePriceToEarningsScore":1.71,"averagePriceToBookScore":1}}
+{
+    "code":200,
+    "message":"成功",
+    "data": {
+        "averageDiscountedCashFlowScore":3,
+        "averageReturnOnAssetsScore":4.71,
+        "averageDebtToEquityScore":2.71,
+        "averagePriceToEarningsScore":1.71,
+        "averagePriceToBookScore":1
+    }
+}
 ```
 
 dailuPerformanceService.js
