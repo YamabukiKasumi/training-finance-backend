@@ -149,3 +149,23 @@ dailuPerformanceService.js
     ]
 }
 ```
+
+portfolioAnalysisService.js
+```
+{
+  "code": 200,
+  "message": "成功",
+  "data": [
+    {
+      "type": "EQUITY",
+      "totalValue": 194122.38,
+      "percentage": 75.56
+    },
+    {
+      "type": "ETF",
+      "totalValue": 62776.96,
+      "percentage": 24.44
+    }
+  ]
+}
+```
