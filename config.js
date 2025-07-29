@@ -43,6 +43,7 @@ module.exports = {
     baseUrl: 'https://financialmodelingprep.com/stable/', // 实际的基准URL，以便将来扩展
     quoteEndpoint: '/quote', // 指数报价的相对路径
     ratingSnapshotEndpoint: '/ratings-snapshot', // *** 1. 新增评分端点 ***
+    historicalPriceFullEndpoint: '/historical-price-eod/full', // *** 新增这个端点 ***
     apiKey: 'mh1PytCioaQIwCWp2rQhQU2RmUR5Fw4I', // 替换为你的 FMP API Key
   },
   // *** 新增获取指数信息的默认符号和间隔 ***
