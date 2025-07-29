@@ -12,15 +12,13 @@ const dbConfig = config.db;
 exports.getDailyPortfolioPerformance = async (endDateStr) => {
     // --- 1. 确定并生成日期范围 ---
     const endDate = endDateStr ? new Date(endDateStr + 'T00:00:00Z') : new Date();
-    endDate.setUTCHours(0, 0, 0, 0); // 确保时间为 UTC 午夜
+    endDate.setUTCHours(0, 0, 0, 0);
 
-    const dateRange = [];
-    for (let i = 0; i < 30; i++) {
-        const currentDate = new Date(endDate);
-        currentDate.setDate(endDate.getDate() - i);
-        dateRange.push(currentDate.toISOString().split('T')[0]);
-    }
-    dateRange.reverse(); // 从最早的日期到最近的日期排序
+    const dateRange = Array.from({ length: 30 }, (_, i) => {
+        const d = new Date(endDate);
+        d.setDate(endDate.getDate() - i);
+        return d.toISOString().split('T')[0];
+    }).reverse();
 
     const startDateRange = dateRange[0];
     const endDateRange = dateRange[dateRange.length - 1];
@@ -40,10 +38,37 @@ exports.getDailyPortfolioPerformance = async (endDateStr) => {
         console.log('(业绩服务) 没有持仓记录，无需计算。');
         return [];
     }
-
-    // --- 3. 一次性获取所有持仓在整个日期范围内的所有历史价格 ---
     const symbols = holdings.map(h => h.symbol);
     const placeholders = symbols.map(() => '?').join(',');
+
+    // --- 3. *** 核心优化：获取初始价格状态 *** ---
+    // 为分析周期的第一天，找到每个持仓在当天或之前最近的收盘价。
+    const initialPricesMap = new Map();
+    try {
+        connection = await mysql.createConnection(dbConfig);
+        // 使用窗口函数 (ROW_NUMBER) 来为每个 symbol 按日期降序排名，然后取第一个
+        const initialPriceSql = `
+            WITH RankedPrices AS (
+                SELECT 
+                    symbol, 
+                    close_price, 
+                    ROW_NUMBER() OVER(PARTITION BY symbol ORDER BY data_timestamp DESC) as rn
+                FROM stock_history
+                WHERE symbol IN (${placeholders}) AND data_timestamp <= ?
+            )
+            SELECT symbol, close_price FROM RankedPrices WHERE rn = 1;
+        `;
+        const [initialPriceRows] = await connection.execute(initialPriceSql, [...symbols, startDateRange]);
+        
+        initialPriceRows.forEach(row => {
+            initialPricesMap.set(row.symbol, row.close_price);
+        });
+        console.log(`(业绩服务) 成功获取 ${initialPricesMap.size} 只股票的初始价格状态`);
+    } finally {
+        if (connection) await connection.end();
+    }
+    
+    // --- 4. 获取在30天周期内的所有历史价格 ---
     let historicalPrices = [];
     try {
         connection = await mysql.createConnection(dbConfig);
@@ -54,13 +79,11 @@ exports.getDailyPortfolioPerformance = async (endDateStr) => {
             AND data_timestamp BETWEEN ? AND ?
         `;
         [historicalPrices] = await connection.execute(sql, [...symbols, startDateRange, endDateRange]);
-        console.log(`(业绩服务) 从数据库获取到 ${historicalPrices.length} 条相关历史价格记录`);
+        console.log(`(业绩服务) 从数据库获取到 ${historicalPrices.length} 条区间内历史价格记录`);
     } finally {
         if (connection) await connection.end();
     }
 
-    // --- 4. 将历史价格处理成易于查询的 Map 结构 ---
-    // 结构: Map<Symbol, Map<DateString, Price>>
     const pricesBySymbolByDate = new Map();
     for (const priceData of historicalPrices) {
         if (!pricesBySymbolByDate.has(priceData.symbol)) {
@@ -69,34 +92,30 @@ exports.getDailyPortfolioPerformance = async (endDateStr) => {
         pricesBySymbolByDate.get(priceData.symbol).set(priceData.date, priceData.close_price);
     }
 
-    // --- 5. 计算每一天的总资产 ---
+    // --- 5. 计算每一天的总资产 (使用优化后的初始状态) ---
     const dailyPortfolioValues = [];
-    const lastKnownPrices = new Map(); // 用于存储每只股票最近一次的已知价格
+    // *** 使用初始价格状态来初始化 lastKnownPrices ***
+    const lastKnownPrices = new Map(initialPricesMap);
 
     for (const dateStr of dateRange) {
         let dailyTotalValue = 0;
-
         for (const holding of holdings) {
             let priceForDay = pricesBySymbolByDate.get(holding.symbol)?.get(dateStr);
             
             if (priceForDay !== undefined) {
-                // 如果今天有价格，更新该股票的最近已知价格
                 lastKnownPrices.set(holding.symbol, priceForDay);
             } else {
-                // 如果今天没有价格 (非交易日)，使用上一次的已知价格
                 priceForDay = lastKnownPrices.get(holding.symbol) || 0;
             }
-            
             dailyTotalValue += holding.quantity * priceForDay;
         }
-        
         dailyPortfolioValues.push({
             date: dateStr,
             totalValue: parseFloat(dailyTotalValue.toFixed(2)),
         });
     }
 
-    // --- 6. 计算每日收益率和变动 ---
+    // --- 6. 计算每日收益率和变动 (此部分逻辑无需修改) ---
     const finalResults = [];
     for (let i = 0; i < dailyPortfolioValues.length; i++) {
         const currentDay = dailyPortfolioValues[i];
@@ -105,16 +124,11 @@ exports.getDailyPortfolioPerformance = async (endDateStr) => {
 
         if (i > 0) {
             const previousDay = dailyPortfolioValues[i - 1];
-            
-            // 检查当天是否有交易数据（即价格是否真的更新了）
-            // 我们通过检查当天的价格是否与前一天完全相同来近似判断
-            // 只有当总价值发生变化时，才计算收益
             if (currentDay.totalValue !== previousDay.totalValue && previousDay.totalValue > 0) {
                 dailyChange = currentDay.totalValue - previousDay.totalValue;
                 dailyReturn = (dailyChange / previousDay.totalValue) * 100;
             }
         }
-        
         finalResults.push({
             date: currentDay.date,
             totalAssets: currentDay.totalValue,
