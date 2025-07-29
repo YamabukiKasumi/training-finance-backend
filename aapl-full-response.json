@@ -1,0 +1,8 @@
+{
+  "message": "The type field is required.",
+  "errors": {
+    "type": [
+      "The type field is required."
+    ]
+  }
+}

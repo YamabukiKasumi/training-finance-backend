@@ -1,0 +1,24 @@
+{
+  "symbol": "SPY",
+  "companyName": "SPDR S&P 500",
+  "stockType": null,
+  "exchange": "PSE",
+  "primaryData": {
+    "lastSalePrice": "$637.10",
+    "netChange": "+2.68",
+    "percentageChange": "+0.42%",
+    "deltaIndicator": "up",
+    "lastTradeTimestamp": "Jul 27, 2025",
+    "isRealTime": false,
+    "bidPrice": "N/A",
+    "askPrice": "N/A",
+    "bidSize": "N/A",
+    "askSize": "N/A",
+    "volume": "56,865,364",
+    "currency": null
+  },
+  "secondaryData": null,
+  "marketStatus": "Closed",
+  "assetClass": "ETF",
+  "keyStats": null
+}

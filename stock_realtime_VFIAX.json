@@ -1,0 +1,24 @@
+{
+  "symbol": "VFIAX",
+  "companyName": "Vanguard 500 Index Fd Admiral Shs",
+  "stockType": "Managed Fund",
+  "exchange": "Nasdaq Fund Network",
+  "primaryData": {
+    "lastSalePrice": "$589.89",
+    "netChange": "+2.36",
+    "percentageChange": "+0.40%",
+    "deltaIndicator": "up",
+    "lastTradeTimestamp": "Jul 25, 2025",
+    "isRealTime": false,
+    "bidPrice": "",
+    "askPrice": "",
+    "bidSize": "",
+    "askSize": "",
+    "volume": "",
+    "currency": "USD"
+  },
+  "secondaryData": null,
+  "marketStatus": null,
+  "assetClass": "MUTUALFUNDS",
+  "keyStats": null
+}
