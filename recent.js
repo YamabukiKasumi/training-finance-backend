@@ -430,7 +430,7 @@ async function main() {
 
 
     // 2. 定义请求间隔（毫秒），用于速率控制
-    const REQUEST_INTERVAL_MS = 1500; // 设置为 1.5 秒，可以根据 API 限制调整
+    const REQUEST_INTERVAL_MS = 1000; // 设置为 1.5 秒，可以根据 API 限制调整
 
     // 3. 定义获取参数
     const interval = '1d';

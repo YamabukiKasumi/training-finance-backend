@@ -4,15 +4,6 @@
   },
   "recentItems": [
     {
-      "timestamp": "2025-06-09",
-      "timestamp_unix": 1749441600,
-      "open": 469.7,
-      "high": 473.43,
-      "low": 468.62,
-      "close": 472.75,
-      "volume": 16469900
-    },
-    {
       "timestamp": "2025-06-10",
       "timestamp_unix": 1749528000,
       "open": 471.18,
@@ -304,10 +295,28 @@
       "timestamp": "2025-07-28",
       "timestamp_unix": 1753675200,
       "open": 514.08,
-      "high": 514.68,
-      "low": 512.36,
-      "close": 514.04,
-      "volume": 1402290
+      "high": 515,
+      "low": 510.12,
+      "close": 512.5,
+      "volume": 14308000
+    },
+    {
+      "timestamp": "2025-07-29",
+      "timestamp_unix": 1753761600,
+      "open": 515.53,
+      "high": 517.62,
+      "low": 511.56,
+      "close": 512.57,
+      "volume": 16469200
+    },
+    {
+      "timestamp": "2025-07-30",
+      "timestamp_unix": 1753848000,
+      "open": 515.17,
+      "high": 515.95,
+      "low": 509.435,
+      "close": 513.24,
+      "volume": 26380400
     }
   ]
 }
