@@ -13,6 +13,6 @@ exports.getDailyPerformance = async (req, res) => {
     res.json(successResponse(performanceData));
   } catch (err) {
     console.error('计算每日投资组合表现失败:', err);
-    res.status(500).json(errorResponse('服务器内部错误，无法计算每日表现'));
+    res.status(500).json(errorResponse('Server Internal Error, cannot calculate daily performance.'));
   }
 };

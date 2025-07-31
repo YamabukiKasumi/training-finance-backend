@@ -6,7 +6,7 @@ exports.getNewsBySymbols = async (req, res) => {
   let symbols = req.headers.symbols;
   console.log(`接收到的请求参数 symbols: ${symbols}`);
    if (!symbols) {
-    return res.status(400).json(errorResponse('请求参数 symbols 是必填的'));
+    return res.status(400).json(errorResponse('Request param symbols is mandatory.'));
   }
 
   // 将字符串拆成数组（兼容单个/多个）
@@ -15,7 +15,7 @@ exports.getNewsBySymbols = async (req, res) => {
   }
 
   if (!Array.isArray(symbols) || symbols.length === 0) {
-    return res.status(400).json(errorResponse('请求参数 symbols 应为非空数组'));
+    return res.status(400).json(errorResponse('Request param symbols must be a non-empty array.'));
   }
   console.log(`接收到的请求参数 symbols: ${symbols.join(', ')}`);
 
@@ -24,6 +24,6 @@ exports.getNewsBySymbols = async (req, res) => {
     res.json(successResponse(newsList));
   } catch (err) {
     console.error(err);
-    res.status(500).json(errorResponse('服务器内部错误'));
+    res.status(500).json(errorResponse('Server Internal Error, cannot fetch news.'));
   }
 };

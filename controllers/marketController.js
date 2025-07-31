@@ -12,7 +12,7 @@ exports.getMarketData = async (req, res) => {
   
   // 校验是否为数组
   if (!Array.isArray(symbols) || symbols.length === 0) {
-    return res.status(400).json(errorResponse('请求体应为包含股票对象的非空数组'));
+    return res.status(400).json(errorResponse('Response body must be a non-empty array contains stock object.'));
   }
 
   // 校验每一项是否含有 ticker 和 type
@@ -21,7 +21,7 @@ exports.getMarketData = async (req, res) => {
   );
 
   if (invalidItems.length > 0) {
-    return res.status(400).json(errorResponse('每项必须包含字符串类型的 ticker 和 type'));
+    return res.status(400).json(errorResponse('Every item must contains the string type ticker and type'));
   }
 
   // 你可以统一处理为大写 ticker
@@ -37,6 +37,6 @@ exports.getMarketData = async (req, res) => {
     res.json(successResponse(marketData));
   } catch (err) {
     console.error(err);
-    res.status(500).json(errorResponse('服务器内部错误'));
+    res.status(500).json(errorResponse('Server Internal Error, cannot fetch market data.'));
   }
 };

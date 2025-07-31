@@ -10,6 +10,6 @@ exports.getPortfolioRating = async (req, res) => {
     res.json(successResponse(ratingData));
   } catch (err) {
     console.error('计算投资组合评分失败:', err);
-    res.status(500).json(errorResponse('服务器内部错误，无法计算投资组合评分'));
+    res.status(500).json(errorResponse('Server Internal Error, cannot calculate portfolio rating.'));
   }
 };

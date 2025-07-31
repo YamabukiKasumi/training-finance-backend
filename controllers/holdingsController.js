@@ -15,6 +15,6 @@ exports.getMyHoldings = async (req, res) => {
   } catch (err) {
     console.error('获取用户持仓失败:', err);
     // 根据错误类型可以返回不同的状态码和错误信息
-    res.status(500).json(errorResponse('服务器内部错误，无法获取持仓信息'));
+    res.status(500).json(errorResponse('Server Internal Error, cannot fetch holdings portfolio.'));
   }
 };
