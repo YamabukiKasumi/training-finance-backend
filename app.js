@@ -73,7 +73,7 @@ const swaggerOptions = {
     info: {
       title: 'Personal asset allocation API Document',
       version: '1.0.0',
-      description: 'Node.js + Express API 文档',
+      description: 'Node.js + Express API docs',
     },
     servers: [
       {
