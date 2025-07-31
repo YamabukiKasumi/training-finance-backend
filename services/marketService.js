@@ -49,10 +49,10 @@ exports.getMarketDataForSymbols = async (symbols) => {
 
   // 2️⃣ 立即返回已有股票市场数据
   if (rows.length === 0) {
-    throw new Error('没有找到相关股票市场数据');
+    throw new Error('Cannot find any relevant stock market data');
   }
 
-  console.log(`✅ 成功返回 ${rows.length} 条缓存数据`);
+  console.log(`✅ Return ${rows.length} cached records`);
 
   return rows;
 };

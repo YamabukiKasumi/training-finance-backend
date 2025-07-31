@@ -38,13 +38,13 @@ app.use('/api/portfolio', portfolioAnalysisRoutes);
 app.use('/api/portfolio', dailyPerformanceRoutes); // *** 2. 使用新路由 ***
 app.use('/api/portfolio', ratingRoutes);
 
-// 错误处理中间件
+//误处理中间件
 app.use((err, req, res, next) => {
   // 总是打印完整的错误堆栈到服务器控制台，便于调试
   console.error(err); // 打印整个 err 对象，而不仅仅是 err.stack
 
   // 默认错误信息
-  let errorMessage = '服务器内部错误';
+  let errorMessage = 'Internal Server Error'; // 默认错误信息
   let statusCode = 500; // 默认 500
 
   // 尝试从错误对象中获取更具体的错误信息
@@ -93,5 +93,5 @@ app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
-  console.log(`Swagger 文档: http://localhost:${PORT}/api-docs`);
+  console.log(`Swagger docs: http://localhost:${PORT}/api-docs`);
 });

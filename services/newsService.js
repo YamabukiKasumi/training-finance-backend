@@ -9,13 +9,13 @@ const { successResponse, errorResponse } = require('../utils/response');
 // } = require('../save_latest_news');
 
 exports.getNewsForSymbols = async (symbols) => {
-  console.log(`正在获取 ${symbols.join(', ')} 的最新新闻...`);
+  console.log(`Fetching ${symbols.join(', ')}'s news...`);
 
   // 1. 尝试从数据库查询现有新闻
   const placeholders = symbols.map(() => '?').join(', ');
   const sql = `SELECT * FROM latest_news WHERE symbol IN (${placeholders})`;
   const [rows] = await db.execute(sql, symbols);
-  console.log(`✅ 从缓存中获取到 ${rows.length} 条新闻`);
+  console.log(`✅ Fetched ${rows.length} news`);
 
 
   // // 1️⃣ 异步刷新每个 symbol 的新闻
@@ -52,9 +52,9 @@ exports.getNewsForSymbols = async (symbols) => {
   // 3. 立即返回从数据库中找到的新闻，即使是空数组
   // *** 关键修改：移除抛出错误的部分 ***
   if (rows.length === 0) {
-    throw new Error('没有找到相关新闻'); // <--- 问题根源，注释或删除此块
+    throw new Error('No relevant news'); // <--- 问题根源，注释或删除此块
   }
 
-  console.log(`✅ 成功返回 ${rows.length} 条缓存新闻`);
+  console.log(`✅ Return ${rows.length} cached news`);
   return rows; // 直接返回 rows，如果没找到，它就是一个空数组 []
 };

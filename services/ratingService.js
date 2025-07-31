@@ -28,7 +28,7 @@ async function fetchUserHoldingsSymbols() {
         const [rows] = await connection.execute('SELECT symbol FROM user_stock_holdings_new');
         return rows.map(row => row.symbol);
     } catch (error) {
-        console.error('❌ (评级服务) 获取持仓失败:', error.message);
+        console.error('❌ (Rating) Fail to fetch the holdings:', error.message);
         throw error;
     } finally {
         if (connection) await connection.end();
@@ -42,7 +42,7 @@ async function fetchUserHoldingsSymbols() {
  */
 async function fetchRatingForSymbol(symbol) {
     try {
-        console.log(`🔍 (评级服务) 正在获取 ${symbol} 的评级...`);
+        console.log(`🔍 (Rating) Fetching ${symbol}'s ratings'...`);
         const response = await axios.get(API_URL, {
             params: { symbol, apikey: apiKey },
             timeout: 10000
@@ -51,10 +51,10 @@ async function fetchRatingForSymbol(symbol) {
         if (response.data && Array.isArray(response.data) && response.data.length > 0) {
             return response.data[0];
         }
-        console.warn(`⚠️ (评级服务) ${symbol} 未返回有效的评级数据。`);
+        console.warn(`⚠️ (Rating) Fail to return valid ${symbol}'s records'`);
         return null;
     } catch (error) {
-        console.error(`❌ (评级服务) 获取 ${symbol} 评级失败:`, error.message);
+        console.error(`❌ (Rating) Fail to fetch ${symbol} ratings:`, error.message);
         return null; // 失败时返回 null，不中断整个流程
     }
 }
@@ -73,10 +73,10 @@ exports.calculateAveragePortfolioRating = async () => {
     const eligibleSymbols = userHoldings.filter(symbol => allowedSymbols.has(symbol));
 
     if (eligibleSymbols.length === 0) {
-        console.log('ℹ️ (评级服务) 用户持仓中没有符合评级条件的股票。');
-        return { message: '没有可供评级的持仓股票。' };
+        console.log('ℹ️ (Rating) No valid holdings');
+        return { message: 'No holding stock.' };
     }
-    console.log(`(评级服务) 符合评级条件的持仓: ${eligibleSymbols.join(', ')}`);
+    console.log(`(Rating) valid holdings: ${eligibleSymbols.join(', ')}`);
 
     // 3. 初始化用于累加分数的对象和成功计数器
     const totalScores = {
@@ -110,8 +110,8 @@ exports.calculateAveragePortfolioRating = async () => {
 
     // 5. 计算平均分并返回结果
     if (successfulRatingsCount === 0) {
-        console.log('ℹ️ (评级服务) 所有符合条件的股票都未能获取到评级。');
-        return { message: '未能获取到任何持仓股票的评级数据。' };
+        console.log('ℹ️ (Rating) Cannot fetch any ratings for the holdings.');
+        return { message: 'Fail to fetch ratings.' };
     }
 
     const averageScores = {
@@ -122,6 +122,6 @@ exports.calculateAveragePortfolioRating = async () => {
         averagePriceToBookScore: parseFloat((totalScores.priceToBookScore / successfulRatingsCount).toFixed(2))
     };
     
-    console.log('✅ (评级服务) 投资组合平均评分计算完成:', averageScores);
+    console.log('✅ (Rating) Done.', averageScores);
     return averageScores;
 };

@@ -22,25 +22,25 @@ async function fetchAllHoldings() {
     let connection;
     try {
         connection = await mysql.createConnection(dbConfig);
-        console.log('🔗 已连接到数据库 (获取持仓)');
+        console.log('🔗 Connected to the database(fetch the holdings)');
 
         // 查询持仓信息，包括买入时间戳
         const [rows] = await connection.execute(
             'SELECT symbol, quantity, purchase_timestamp_unix FROM user_stock_holdings_new WHERE purchase_timestamp_unix IS NOT NULL'
         );
-        console.log(`📚 从数据库获取到 ${rows.length} 条有效持仓记录 (已过滤无买入时间的记录)`);
+        console.log(`📚 Fetch ${rows.length} valid records from database.`);
         return rows;
 
     } catch (error) {
-        console.error('❌ 从数据库获取持仓失败:', error.message);
+        console.error('❌ Fail to fetch the holdings from database:', error.message);
         throw error; // 重新抛出错误，让调用者处理
     } finally {
         if (connection) {
             try {
                 await connection.end();
-                console.log('🔒 数据库连接已关闭 (获取持仓)');
+                console.log('🔒 Connection closed to databse (fetch the holding)');
             } catch (closeError) {
-                console.error('⚠️ 关闭数据库连接时出错:', closeError.message);
+                console.error('⚠️ Fail to close the connection to database:', closeError.message);
             }
         }
     }
@@ -72,17 +72,17 @@ async function fetchPurchasePrice(symbol, purchaseTimestampUnix) {
             // console.log(`✅ 找到 ${symbol} 的买入价: $${rows[0].close_price}`); // 可选日志
             const price = parseFloat(rows[0].close_price);
             if (isNaN(price)) {
-                console.warn(`⚠️ ${symbol} 的买入价 '${rows[0].close_price}' 无法转换为有效数字`);
+                console.warn(`⚠️ ${symbol} 's purchase price '${rows[0].close_price}' cannot be converted to a valid number`);
                 return null;
             }
             return price;
         } else {
-            console.warn(`⚠️ 未在 stock_history 中找到 ${symbol} 在时间戳 ${purchaseTimestampUnix} 或之前的收盘价`);
+            console.warn(`⚠️ Fail to find ${symbol} on timestamp ${purchaseTimestampUnix} or before it in the stock_history`);
             return null;
         }
 
     } catch (error) {
-        console.error(`❌ 查询 ${symbol} 买入价失败:`, error.message);
+        console.error(`❌ Fail to query ${symbol}'s purchase price:`, error.message);
         return null; // 返回 null 允许程序继续处理其他股票
     } finally {
         if (connection) {
@@ -90,7 +90,7 @@ async function fetchPurchasePrice(symbol, purchaseTimestampUnix) {
                 await connection.end();
                 // console.log('🔒 数据库连接已关闭 (查询买入价)'); // 可选日志
             } catch (closeError) {
-                console.error('⚠️ 关闭数据库连接时出错:', closeError.message);
+                console.error('⚠️ Fail to close the connection to database:', closeError.message);
             }
         }
     }

@@ -16,7 +16,7 @@ const { baseUrl, historicalPriceFullEndpoint, apiKey } = config.financialModelin
 async function fetchBenchmarkPerformance(startDateStr, endDateStr) {
     const BENCHMARK_SYMBOL = 'SPY';
     const url = `${baseUrl}${historicalPriceFullEndpoint}`;
-    console.log(`(基准服务) 正在从 FMP API 获取 ${BENCHMARK_SYMBOL} 的历史表现...`);
+    console.log(`(benckmark) Trying to fetch the history of ${BENCHMARK_SYMBOL} From FMP API...`);
     
     try {
         const response = await axios.get(url, {
@@ -37,10 +37,10 @@ async function fetchBenchmarkPerformance(startDateStr, endDateStr) {
                 }
             });
         }
-        console.log(`(基准服务) 成功获取并处理了 ${benchmarkMap.size} 条 ${BENCHMARK_SYMBOL} 的记录`);
+        console.log(`(benchmark) Successfully fetch and process ${benchmarkMap.size} ${BENCHMARK_SYMBOL} records.`);
         return benchmarkMap;
     } catch (error) {
-        console.error(`❌ (基准服务) 获取 ${BENCHMARK_SYMBOL} 表现失败:`, error.message);
+        console.error(`❌ (benchmark) Fail to fetch ${BENCHMARK_SYMBOL} history:`, error.message);
         // 即使基准获取失败，也返回一个空 Map，不中断主流程
         return new Map();
     }
@@ -65,7 +65,7 @@ exports.getDailyPortfolioPerformance = async (endDateStr) => {
 
     const startDateRange = dateRange[0];
     const endDateRange = dateRange[dateRange.length - 1];
-    console.log(`(业绩服务) 计算日期范围: ${startDateRange} to ${endDateRange}`);
+    console.log(`(daily performance) Calculate the range of date: ${startDateRange} to ${endDateRange}`);
 
     // --- 2. *** 核心修改：使用 Promise.all 并行执行任务 *** ---
     const [portfolioPerformance, benchmarkMap] = await Promise.all([
@@ -82,7 +82,7 @@ exports.getDailyPortfolioPerformance = async (endDateStr) => {
             }
             
             if (holdings.length === 0) {
-                console.log('(业绩服务) 没有持仓记录，无需计算。');
+                console.log('(daily performance) No holding records and no need to calculate.');
                 return [];
             }
             const symbols = holdings.map(h => h.symbol);
@@ -95,7 +95,7 @@ exports.getDailyPortfolioPerformance = async (endDateStr) => {
                 const initialPriceSql = `WITH RankedPrices AS (SELECT symbol, close_price, ROW_NUMBER() OVER(PARTITION BY symbol ORDER BY data_timestamp DESC) as rn FROM stock_history WHERE symbol IN (${placeholders}) AND data_timestamp <= ?) SELECT symbol, close_price FROM RankedPrices WHERE rn = 1;`;
                 const [initialPriceRows] = await connection.execute(initialPriceSql, [...symbols, startDateRange]);
                 initialPriceRows.forEach(row => initialPricesMap.set(row.symbol, row.close_price));
-                console.log(`(业绩服务) 成功获取 ${initialPricesMap.size} 只股票的初始价格状态`);
+                console.log(`(daily performance) Successfully fetch ${initialPricesMap.size} stocks' initial prices.`);
             } finally {
                 if (connection) await connection.end();
             }
@@ -106,7 +106,7 @@ exports.getDailyPortfolioPerformance = async (endDateStr) => {
                 connection = await mysql.createConnection(dbConfig);
                 const sql = `SELECT symbol, DATE_FORMAT(data_timestamp, '%Y-%m-%d') as date, close_price FROM stock_history WHERE symbol IN (${placeholders}) AND data_timestamp BETWEEN ? AND ?`;
                 [historicalPrices] = await connection.execute(sql, [...symbols, startDateRange, endDateRange]);
-                console.log(`(业绩服务) 从数据库获取到 ${historicalPrices.length} 条区间内历史价格记录`);
+                console.log(`(daily performance) Fetch ${historicalPrices.length} history price records from the database in the range of designated dates.`);
             } finally {
                 if (connection) await connection.end();
             }
@@ -153,7 +153,7 @@ exports.getDailyPortfolioPerformance = async (endDateStr) => {
                     dailyReturnPercentage: parseFloat(dailyReturn.toFixed(2)),
                 });
             }
-            console.log(`(业绩服务) 个人投资组合表现计算完成`);
+            console.log(`(daily performance) Successfully calculate the personal portfolio performance.`);
             return finalResults;
         })(),
         
@@ -172,6 +172,6 @@ exports.getDailyPortfolioPerformance = async (endDateStr) => {
         };
     });
     
-    console.log(`(业绩服务) 成功合并个人表现与基准表现数据`);
+    console.log(`(daily performance) Successfully merge the personal portfolio and the benchmark performance.`);
     return finalResultsWithBenchmark;
 };

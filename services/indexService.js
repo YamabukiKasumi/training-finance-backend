@@ -23,7 +23,7 @@ const delay = (ms) => new Promise(resolve => setTimeout(resolve, ms));
 async function getIndexQuote(symbol) {
     const url = `${FMP_BASE_URL}${FMP_QUOTE_ENDPOINT}`;
     try {
-        console.log(`🔍 正在从 FMP 获取指数 ${symbol} 的报价...`);
+        console.log(`🔍 Fetch ${symbol}'s price from FMP...`);
         const response = await axios.get(url, {
             params: {
                 symbol: symbol,
@@ -41,17 +41,17 @@ async function getIndexQuote(symbol) {
                 price: parseFloat(indexData.price.toFixed(2)),
                 changePercentage: parseFloat(indexData.changePercentage.toFixed(4)) // 保留4位小数
             };
-            console.log(`✅ 成功获取 ${symbol} 的报价: ${JSON.stringify(extractedData)}`);
+            console.log(`✅ Successfully fetch ${symbol}'s price': ${JSON.stringify(extractedData)}`);
             return extractedData;
         } else {
-            console.warn(`⚠️ FMP API 返回数据结构不符合预期或无数据 for ${symbol}`);
+            console.warn(`⚠️ Data structure from FMP API is invalid for ${symbol}`);
             return null;
         }
     } catch (error) {
-        console.error(`❌ 从 FMP 获取 ${symbol} 报价失败:`, error.message);
+        console.error(`❌ Fail to fetch ${symbol}'s price from FMP':`, error.message);
         if (error.response) {
-            console.error('  状态码:', error.response.status);
-            console.error('  响应数据:', error.response.data);
+            console.error('  Error code:', error.response.status);
+            console.error('  Response:', error.response.data);
         }
         return null; // 返回 null 允许其他指数继续处理
     }
@@ -62,7 +62,7 @@ async function getIndexQuote(symbol) {
  * @returns {Promise<Array<Object>>} 所有指数信息的数组
  */
 async function getAllIndexesInfo() {
-    console.log('\n=== 正在获取所有常见指数信息 ===');
+    console.log('\n=== Fetching all common indexes\' information ===');
     const allIndexesData = [];
 
     for (let i = 0; i < DEFAULT_INDEX_SYMBOLS.length; i++) {
@@ -70,7 +70,7 @@ async function getAllIndexesInfo() {
         if (i > 0) {
             // 在每个请求之间添加延迟，除了第一个请求
             await delay(REQUEST_INTERVAL_MS);
-            console.log(`⏱️ 延迟 ${REQUEST_INTERVAL_MS}ms 后请求 ${symbol}...`);
+            console.log(`⏱️ Delay ${REQUEST_INTERVAL_MS}ms and then request ${symbol}...`);
         }
         const indexInfo = await getIndexQuote(symbol);
         if (indexInfo) {
@@ -78,7 +78,7 @@ async function getAllIndexesInfo() {
         }
     }
 
-    console.log(`✅ 所有指数信息获取完成，共 ${allIndexesData.length} 条记录`);
+    console.log(`✅ Done, ${allIndexesData.length} records`);
     return allIndexesData;
 }
 

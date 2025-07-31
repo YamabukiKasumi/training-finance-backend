@@ -18,15 +18,15 @@ async function fetchAllHoldingsWithTypes() {
     let connection;
     try {
         connection = await mysql.createConnection(dbConfig);
-        console.log('🔗 (分析服务) 数据库连接成功');
+        console.log('🔗 (Analysis) Connect to database');
 
         const [rows] = await connection.execute(
             'SELECT symbol, quantity, quote_type FROM user_stock_holdings_new'
         );
-        console.log(`📚 (分析服务) 从数据库获取到 ${rows.length} 条持仓记录`);
+        console.log(`📚 (Analysis) Fetch ${rows.length} records from database`);
         return rows;
     } catch (error) {
-        console.error('❌ (分析服务) 从数据库获取持仓失败:', error.message);
+        console.error('❌ (Analysis) Fail to fetch holdings:', error.message);
         throw error; // 抛出错误，让主函数处理
     } finally {
         if (connection) await connection.end();
@@ -118,6 +118,6 @@ exports.calculateAssetAllocation = async () => {
         percentage: parseFloat(((totalValue / grandTotalValue) * 100).toFixed(2))
     }));
 
-    console.log('✅ (分析服务) 资产分布计算完成:', result);
+    console.log('✅ (Analysis) Assest analysis:', result);
     return result;
 };
